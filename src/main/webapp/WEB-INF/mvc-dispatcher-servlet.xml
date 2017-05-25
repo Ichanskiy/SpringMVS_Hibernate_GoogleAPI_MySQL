@@ -8,15 +8,52 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 
-<context:component-scan base-package="com"/>
+    <context:component-scan base-package="com"/>
     <context:annotation-config/>
 
     <mvc:default-servlet-handler/>
     <mvc:annotation-driven/>
 
+
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+    <!-- Database Information -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/diplom"/>
+        <property name="username" value="root"/>
+        <property name="password" value="1111"/>
+    </bean>
+
+    <!-- Hibernate 4 SessionFactory Bean definition -->
+    <bean id="hibernate4AnnotatedSessionFactory"
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan">
+            <list>
+                <value>com.Entity</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+
+                <prop key="hbm2ddl.auto">update</prop>
+
+            </props>
+        </property>
+    </bean>
+
+    <bean id="userDao" class="com.Dao.UserDaoImpl">
+<!--
+       <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+-->
+    </bean>
+
 
 </beans>
