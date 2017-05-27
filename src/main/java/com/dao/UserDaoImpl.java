@@ -1,16 +1,13 @@
-package com.Dao;
+package com.dao;
 
-import com.Entity.User;
+import com.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Created by Ichanskiy on 2017-05-25.
- */
+
+
 public class UserDaoImpl implements UserDao<User> {
 
     private static final Logger log = LoggerFactory.getLogger(UserDaoImpl.class);
@@ -18,18 +15,25 @@ public class UserDaoImpl implements UserDao<User> {
 
     private SessionFactory sessionFactory;
 
-    @Autowired
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
     @Override
-    public int saveUser(User user) {
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
+    public void saveUser(User user) {
+        Session session = this.sessionFactory.getCurrentSession();
         session.persist(user);
-        session.getTransaction().commit();
         log.info("User successfully saved. Details: " + user);
-        return 0;
+    }
+
+    @Override
+    public boolean getUserByPhone(int phone) {
+        Session session = this.sessionFactory.getCurrentSession();
+        System.out.println(phone);
+        User user = (User) session.get(User.class, phone);
+        System.out.println(user);
+        if (user  == null) {
+            return  true;
+        }else return false;
     }
 }

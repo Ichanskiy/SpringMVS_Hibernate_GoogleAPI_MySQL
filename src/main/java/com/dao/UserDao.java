@@ -1,4 +1,4 @@
-package com.Dao;
+package com.dao;
 
 import java.sql.SQLException;
 
@@ -6,5 +6,6 @@ import java.sql.SQLException;
  * Created by Ichanskiy on 2017-05-25.
  */
 public interface UserDao<T> {
-    int saveUser(T t) throws SQLException;
+    void saveUser(T t);
+    boolean getUserByPhone(int phone);
 }

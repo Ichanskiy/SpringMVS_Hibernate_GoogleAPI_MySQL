@@ -11,8 +11,10 @@
     <context:component-scan base-package="com"/>
     <context:annotation-config/>
 
+<!--
     <mvc:default-servlet-handler/>
     <mvc:annotation-driven/>
+-->
 
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -35,7 +37,7 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan">
             <list>
-                <value>com.Entity</value>
+                <value>com.entity</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -49,11 +51,19 @@
         </property>
     </bean>
 
-    <bean id="userDao" class="com.Dao.UserDaoImpl">
-<!--
-       <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
--->
+    <bean id="userDao" class="com.dao.UserDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+    <bean id="userService" class="com.service.UserServiceImpl">
+        <property name="userDao" ref="userDao"/>
     </bean>
 
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <mvc:default-servlet-handler/>
+    <mvc:annotation-driven/>
 </beans>
