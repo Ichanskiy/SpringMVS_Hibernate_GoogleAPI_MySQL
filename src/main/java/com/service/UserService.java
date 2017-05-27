@@ -1,5 +1,8 @@
 package com.service;
 
+import com.entity.AuthorisationUser;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.sql.SQLException;
 
 /**
@@ -8,5 +11,5 @@ import java.sql.SQLException;
 public interface UserService<T> {
 
     boolean registrationUser(T t);
-
+    boolean authorisationUser(AuthorisationUser authorisationUser);
 }

@@ -1,6 +1,7 @@
 package com.controller;
 
 
+import com.entity.AuthorisationUser;
 import com.entity.User;
 import com.service.UserService;
 import org.slf4j.Logger;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
+
 
 /**
  * Created by Ichanskiy on 2017-05-25.
@@ -26,17 +29,16 @@ public class MainController {
 
     private UserService<User> userService;
 
-    @Autowired(required = true)
+    @Autowired
     @Qualifier(value = "userService")
     public void setUserService(UserService<User> userService) {
         this.userService = userService;
     }
 
-
-
     @RequestMapping(value = "/LogIn", method = RequestMethod.GET)
     public String showLogInPage(Model model){
         System.out.println("1");
+        model.addAttribute("authorisationUser", new AuthorisationUser());
         return "LogIn";
     }
 
@@ -44,6 +46,17 @@ public class MainController {
     public String showRegistrationPage(Model model){
         model.addAttribute("user", new User());
         return "Registration";
+    }
+
+    @RequestMapping(value = "/LogIn", method = RequestMethod.POST)
+    public String authorisation(@ModelAttribute("authorisationUser")AuthorisationUser authorisationUser) {
+        System.out.println(authorisationUser);
+
+        if (this.userService.authorisationUser(authorisationUser)){
+            return "Expenses";
+        } else {
+            return "Error";
+        }
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
@@ -58,5 +71,7 @@ public class MainController {
             return "Error";
         }
     }
+
+
 }
 

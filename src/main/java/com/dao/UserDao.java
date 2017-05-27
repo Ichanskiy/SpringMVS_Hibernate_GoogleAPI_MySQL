@@ -1,5 +1,7 @@
 package com.dao;
 
+import com.entity.AuthorisationUser;
+
 import java.sql.SQLException;
 
 /**
@@ -8,4 +10,5 @@ import java.sql.SQLException;
 public interface UserDao<T> {
     void saveUser(T t);
     boolean getUserByPhone(int phone);
+    boolean getUser(AuthorisationUser authorisationUser);
 }

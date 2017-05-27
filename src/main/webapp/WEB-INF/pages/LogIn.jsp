@@ -33,28 +33,23 @@
 <center><h3>Авторизація</h3></center>
 
 <div id="div_reg">
-    <c:url var="addAction4" value="/expenses"/>
-    <form:form action="${addAction4}">
+    <c:url var="addAction" value="/LogIn" />
+    <form:form action="${addAction}" commandName="authorisationUser">
+
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" name="email" id="email"  placeholder="Введіть email" required pattern="(\W|^)[\w.+\-]{0,25}@(yahoo|hotmail|gmail|i)\.com(\W|$)">
+            <form:input path = "user_email"  type = "email" class = "form-control" name = "email" id = "email"  placeholder = "Введіть email" pattern = "(\W|^)[\w.+\-]{0,25}@(yahoo|hotmail|gmail|i)\.com(\W|$)" />
         </div>
 
         <div class="form-group">
             <label for="email">Номер телефону</label>
-            <input type="tel" name="tel_reg"  class="form-control" placeholder="Мобільний телефон" required  pattern="[0-9]{2,10}">
-<%--
-            <input type="tel" name="tel_reg" value="66" class="form-control" placeholder="Мобільний телефон" required>
---%>
+            <form:input path = "user_phone" type = "text" name = "tel_reg"  class = "form-control" placeholder = "Мобільний телефон"  pattern = "[0-9]{2,10}"/>
         </div>
+
         <button type="submit" class="btn btn-success">Увійти</button>
         <a href="<c:url value="/registration"/>" ><button type="button" class="btn btn-success">Зареєструватися</button></a>
     </form:form>
 </div>
-
-<%-- <br/>
- <a href="<c:url value="/spending"/>" target="_blank"><button type="button" class="btn btn-danger btn-lg">book list</button></a>
- <br/>--%>
 
 </body>
 </html>
