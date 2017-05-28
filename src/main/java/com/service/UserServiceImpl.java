@@ -3,13 +3,15 @@ package com.service;
 import com.dao.UserDao;
 import com.entity.AuthorisationUser;
 import com.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
+@Service
 public class UserServiceImpl implements  UserService<User> {
 
     private UserDao<User> userDao;
-
+    @Autowired
     public void setUserDao(UserDao<User> userDao) {
         this.userDao = userDao;
     }

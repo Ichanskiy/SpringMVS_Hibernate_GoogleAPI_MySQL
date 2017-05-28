@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/maskinput.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
     <script type="text/javascript">
         jQuery(function($){
-            $("#tel").mask("+38(999) 999-9999");
+            $("#tel").mask("+38(999)-999-9999");
         });
     </script>
 
@@ -48,7 +48,7 @@
 
         <div class="form-group">
             <label for="email">Номер телефону</label>
-            <form:input path="user_phone" type="text" class="form-control" placeholder="Мобільний телефон"  pattern="[0-9]{2,10}"/>
+            <form:input path="user_phone" id = "tel" class="form-control" placeholder="Мобільний телефон"/>
         </div>
 
         <div class="form-group">

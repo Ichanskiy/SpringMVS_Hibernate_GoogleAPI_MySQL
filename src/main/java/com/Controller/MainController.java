@@ -8,12 +8,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 
 @Controller
+@SessionAttributes("authorisationUser")
 public class MainController {
 
     private static final Logger log = LoggerFactory.getLogger(MainController.class);
@@ -30,7 +32,6 @@ public class MainController {
     private UserService<User> userService;
 
     @Autowired
-    @Qualifier(value = "userService")
     public void setUserService(UserService<User> userService) {
         this.userService = userService;
     }
@@ -48,12 +49,14 @@ public class MainController {
         return "Registration";
     }
 
-    @RequestMapping(value = "/LogIn", method = RequestMethod.POST)
+    @RequestMapping(value = "expenses", method = RequestMethod.POST)
     public String authorisation(@ModelAttribute("authorisationUser")AuthorisationUser authorisationUser) {
         System.out.println(authorisationUser);
 
         if (this.userService.authorisationUser(authorisationUser)){
-            return "Expenses";
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.addObject("authorisationUser", authorisationUser);
+            return "redirect:/Expenses";
         } else {
             return "Error";
         }
@@ -72,6 +75,15 @@ public class MainController {
         }
     }
 
+    @RequestMapping(value = "Expenses", method = RequestMethod.GET)
+    public String showExpansesPage(@ModelAttribute("authorisationUser") AuthorisationUser AuthorisationUser) {
+        System.out.println("AuthorisationUser = " + AuthorisationUser);
+        return "Expenses";
+    }
 
+   /* @RequestMapping(value = "expenses/add", method = RequestMethod.GET)
+    public String addExpanses(@ModelAttribute("authorisationUser") AuthorisationUser user) {
+        System.out.println("quth = " + user);
+        return "Expenses";
+    }*/
 }
-

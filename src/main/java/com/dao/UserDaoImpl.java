@@ -30,7 +30,7 @@ public class UserDaoImpl implements UserDao<User> {
     }
 
     @Override
-    public boolean getUserByPhone(int phone) {
+    public boolean getUserByPhone(String phone) {
         Session session = this.sessionFactory.getCurrentSession();
         System.out.println(phone);
         User user = (User) session.get(User.class, phone);
@@ -45,7 +45,7 @@ public class UserDaoImpl implements UserDao<User> {
         Session session = this.sessionFactory.getCurrentSession();
         Query query = session.createQuery("from User as user where user.user_email = ? and user_phone = ?");
         query.setString(0, authorisationUser.getUser_email());
-        query.setInteger(1, authorisationUser.getUser_phone());
+        query.setString(1, authorisationUser.getUser_phone());
         List userList = query.list();
         System.out.println("if user exist --> return true");
         return !userList.isEmpty();

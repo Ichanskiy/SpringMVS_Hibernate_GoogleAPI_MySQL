@@ -5,14 +5,14 @@ package com.entity;
  */
 public class AuthorisationUser {
     
-    private int user_phone;
+    private String user_phone;
     private String user_email;
 
-    public int getUser_phone() {
+    public String getUser_phone() {
         return user_phone;
     }
 
-    public void setUser_phone(int user_phone) {
+    public void setUser_phone(String user_phone) {
         this.user_phone = user_phone;
     }
 
@@ -27,7 +27,7 @@ public class AuthorisationUser {
     @Override
     public String toString() {
         return "AuthorisationUser{" +
-                "user_phone=" + user_phone +
+                "user_phone='" + user_phone + '\'' +
                 ", user_email='" + user_email + '\'' +
                 '}';
     }

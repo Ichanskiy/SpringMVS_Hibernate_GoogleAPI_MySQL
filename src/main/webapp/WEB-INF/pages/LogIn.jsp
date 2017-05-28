@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/maskinput.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
     <script type="text/javascript">
         jQuery(function($){
-            $("#tel").mask("(999) 999-9999");
+            $("#tel").mask("+38(999)-999-9999");
         });
     </script>
 
@@ -33,7 +33,7 @@
 <center><h3>Авторизація</h3></center>
 
 <div id="div_reg">
-    <c:url var="addAction" value="/LogIn" />
+    <c:url var="addAction" value="/expenses" />
     <form:form action="${addAction}" commandName="authorisationUser">
 
         <div class="form-group">
@@ -43,7 +43,7 @@
 
         <div class="form-group">
             <label for="email">Номер телефону</label>
-            <form:input path = "user_phone" type = "text" name = "tel_reg"  class = "form-control" placeholder = "Мобільний телефон"  pattern = "[0-9]{2,10}"/>
+            <form:input path = "user_phone" id = "tel" name = "tel_reg"  class = "form-control" placeholder = "Мобільний телефон"/>
         </div>
 
         <button type="submit" class="btn btn-success">Увійти</button>
