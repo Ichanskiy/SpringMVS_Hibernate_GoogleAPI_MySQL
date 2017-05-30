@@ -3,7 +3,7 @@ package com.entity;
 /**
  * Created by Ichanskiy on 2017-05-27.
  */
-public class AuthorisationUser {
+public class AuthorisationUser extends User {
     
     private String user_phone;
     private String user_email;
