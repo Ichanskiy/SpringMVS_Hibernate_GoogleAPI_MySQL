@@ -1,4 +1,4 @@
-package com.service;
+package com.service.interfaces;
 
 import com.entity.AuthorisationUser;
 import org.springframework.transaction.annotation.Transactional;
