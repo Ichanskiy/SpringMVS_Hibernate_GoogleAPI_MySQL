@@ -1,4 +1,4 @@
-package com.dao;
+package com.dao.interfaces;
 
 import com.entity.AuthorisationUser;
 

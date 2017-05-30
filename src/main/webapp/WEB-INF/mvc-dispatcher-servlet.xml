@@ -11,12 +11,6 @@
     <context:component-scan base-package="com"/>
     <context:annotation-config/>
 
-<!--
-    <mvc:default-servlet-handler/>
-    <mvc:annotation-driven/>
--->
-
-
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".jsp"/>
@@ -49,9 +43,26 @@
         </property>
     </bean>
 
-    <bean id="userDao" class="com.dao.UserDaoImpl">
+    <bean id="userDao" class="com.dao.implementation.UserDaoImpl">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
     </bean>
+
+    <bean id="placePointDao" class="com.dao.implementation.PlacePointImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="tagDao" class="com.dao.implementation.TagDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="userExpensesDao" class="com.dao.implementation.UserExpensesDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="userExpensesTagDao" class="com.dao.implementation.UserExpensesTagDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
 

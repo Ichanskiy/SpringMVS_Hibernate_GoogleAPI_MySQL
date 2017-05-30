@@ -1,6 +1,6 @@
 package com.service;
 
-import com.dao.UserDao;
+import com.dao.interfaces.UserDao;
 import com.entity.AuthorisationUser;
 import com.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
