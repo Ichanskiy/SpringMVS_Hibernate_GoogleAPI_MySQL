@@ -1,9 +1,6 @@
 package com.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by Ichanskiy on 2017-05-30.
@@ -25,6 +22,9 @@ public class PlacePoint {
     @Column(name = "placepoint_address")
     private String placePointAddress;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PLACEPOINT_ID")
+    private UserExpenses userExpenses;
 
     public PlacePoint() {
     }

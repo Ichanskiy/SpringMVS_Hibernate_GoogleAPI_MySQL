@@ -14,7 +14,7 @@ public class AllEntityServiceImpl implements AllEntityService {
 
     @Override
     @Transactional
-    public void saveallUserExpansesData(AuthorisationUser authorisationUser, UserExpenses userExpenses, PlacePoint placePoint, Tag tag, UserExpensesTag userExpensesTag) {
+    public void saveAllUserExpansesData(AuthorisationUser authorisationUser, UserExpenses userExpenses, PlacePoint placePoint, Tag tag, UserExpensesTag userExpensesTag) {
 
     }
 

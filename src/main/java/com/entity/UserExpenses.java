@@ -1,10 +1,9 @@
 package com.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Ichanskiy on 2017-05-30.
@@ -28,6 +27,16 @@ public class UserExpenses {
 
     @Column(name = "userexperses_date")
     private Date userExpensesDate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "USER_PHONE_FK", nullable = false)
+    private User user;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userExpenses")
+    private Set<PlacePoint> placePointSet = new HashSet<PlacePoint>(0);
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userExpenses")
+    private Set<UserExpensesTag> userExpensesTags = new HashSet<UserExpensesTag>(0);
 
     public UserExpenses() {
     }

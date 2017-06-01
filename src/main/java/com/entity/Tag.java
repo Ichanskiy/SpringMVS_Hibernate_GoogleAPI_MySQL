@@ -1,9 +1,8 @@
 package com.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Ichanskiy on 2017-05-30.
@@ -23,6 +22,8 @@ public class Tag {
     @Column(name = "tag_discription")
     private String tagDiscripton;
 
+    @OneToMany(mappedBy = "tag")
+    private Set<UserExpensesTag> userExpensesTagSet = new HashSet<UserExpensesTag>(0);
 
     public Tag() {
     }

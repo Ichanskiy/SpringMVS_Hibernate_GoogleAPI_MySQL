@@ -1,9 +1,6 @@
 package com.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by Ichanskiy on 2017-05-30.
@@ -20,4 +17,38 @@ public class UserExpensesTag {
     @Column(name = "user_expenses_id_fk")
     private int userExpensesIdFk;
 
+    @ManyToOne
+    @JoinColumn(name = "USER_EXPENSES_ID_FK")
+    private UserExpenses userExpenses;
+
+    @ManyToOne
+    @JoinColumn(name = "TAG_NAME_FK")
+    private Tag tag;
+
+    public UserExpensesTag() {
+    }
+
+    public String getTagNameFk() {
+        return tagNameFk;
+    }
+
+    public void setTagNameFk(String tagNameFk) {
+        this.tagNameFk = tagNameFk;
+    }
+
+    public int getUserExpensesIdFk() {
+        return userExpensesIdFk;
+    }
+
+    public void setUserExpensesIdFk(int userExpensesIdFk) {
+        this.userExpensesIdFk = userExpensesIdFk;
+    }
+
+    @Override
+    public String toString() {
+        return "UserExpensesTag{" +
+                "tagNameFk='" + tagNameFk + '\'' +
+                ", userExpensesIdFk=" + userExpensesIdFk +
+                '}';
+    }
 }

@@ -1,10 +1,9 @@
 package com.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Ichanskiy on 2017-05-25.
@@ -25,6 +24,9 @@ public class User {
 
     @Column(name = "user_birthdate")
     private Date user_birthday;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private Set<UserExpenses> userExpensesSet = new HashSet<UserExpenses>(0);
 
     public User() {
     }
