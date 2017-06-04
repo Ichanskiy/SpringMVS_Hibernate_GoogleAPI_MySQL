@@ -16,7 +16,6 @@ public class UserExpensesTag {
     @Column(name = "user_expenses_id_fk")
     private int userExpensesIdFk;
 
-/*
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_EXPENSES_ID_FK")
     private UserExpenses userExpenses;
@@ -24,7 +23,6 @@ public class UserExpensesTag {
     @ManyToOne
     @JoinColumn(name = "TAG_NAME_FK")
     private Tag tag;
-*/
 
     public UserExpensesTag() {
     }
