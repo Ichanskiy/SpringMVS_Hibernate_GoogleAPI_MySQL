@@ -38,12 +38,12 @@
 
         <div class="form-group">
             <label for="email">Email</label>
-            <form:input path = "user_email"  type = "email" class = "form-control" name = "email" id = "email"  placeholder = "Введіть email" pattern = "(\W|^)[\w.+\-]{0,25}@(yahoo|hotmail|gmail|i)\.com(\W|$)" />
+            <form:input path = "user_email"  type = "email" class = "form-control" value = "ichanskiy.olexandr@gmail.com" name = "email" id = "email"  placeholder = "Введіть email" pattern = "(\W|^)[\w.+\-]{0,25}@(yahoo|hotmail|gmail|i)\.com(\W|$)" />
         </div>
 
         <div class="form-group">
             <label for="email">Номер телефону</label>
-            <form:input path = "user_phone" id = "tel" name = "tel_reg"  class = "form-control" placeholder = "Мобільний телефон"/>
+            <form:input path = "user_phone" value = "1111" name = "tel_reg"  class = "form-control" placeholder = "Мобільний телефон"/>
         </div>
 
         <button type="submit" class="btn btn-success">Увійти</button>

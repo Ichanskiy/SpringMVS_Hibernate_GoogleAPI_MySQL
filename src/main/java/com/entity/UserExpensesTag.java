@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Table(name = "userexpensestag")
 public class UserExpensesTag {
 
-    @Id
     @Column(name = "tag_name_fk")
     private String tagNameFk;
 
@@ -17,13 +16,15 @@ public class UserExpensesTag {
     @Column(name = "user_expenses_id_fk")
     private int userExpensesIdFk;
 
-    @ManyToOne
+/*
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_EXPENSES_ID_FK")
     private UserExpenses userExpenses;
 
     @ManyToOne
     @JoinColumn(name = "TAG_NAME_FK")
     private Tag tag;
+*/
 
     public UserExpensesTag() {
     }

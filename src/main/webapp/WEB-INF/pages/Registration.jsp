@@ -48,7 +48,7 @@
 
         <div class="form-group">
             <label for="email">Номер телефону</label>
-            <form:input path="user_phone" id = "tel" class="form-control" placeholder="Мобільний телефон"/>
+            <form:input path="user_phone"  class="form-control" placeholder="Мобільний телефон"/>
         </div>
 
         <div class="form-group">

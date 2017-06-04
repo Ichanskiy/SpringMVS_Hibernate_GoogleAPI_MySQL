@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class PlacePoint {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "placepoint_id")
     private int placePointId;
 
@@ -22,9 +23,9 @@ public class PlacePoint {
     @Column(name = "placepoint_address")
     private String placePointAddress;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+  /*  @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PLACEPOINT_ID")
-    private UserExpenses userExpenses;
+    private UserExpenses userExpenses;*/
 
     public PlacePoint() {
     }

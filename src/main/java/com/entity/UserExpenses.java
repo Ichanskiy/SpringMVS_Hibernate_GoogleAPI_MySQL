@@ -11,7 +11,7 @@ import java.util.Set;
 @Entity
 @Table(name = "userexpenses")
 public class UserExpenses {
-
+    
     @Id
     @Column(name = "userexpenses_id")
     private int userExpensesId;
@@ -28,15 +28,15 @@ public class UserExpenses {
     @Column(name = "userexperses_date")
     private Date userExpensesDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    /*@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_PHONE_FK", nullable = false)
     private User user;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userExpenses")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userExpenses",cascade = CascadeType.ALL)
     private Set<PlacePoint> placePointSet = new HashSet<PlacePoint>(0);
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userExpenses")
-    private Set<UserExpensesTag> userExpensesTags = new HashSet<UserExpensesTag>(0);
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userExpenses", cascade = CascadeType.ALL)
+    private Set<UserExpensesTag> userExpensesTags = new HashSet<UserExpensesTag>(0);*/
 
     public UserExpenses() {
     }

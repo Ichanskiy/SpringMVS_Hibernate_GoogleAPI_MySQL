@@ -15,15 +15,14 @@ public class Tag {
     @Column(name = "tag_name")
     private String tagName;
 
-    @Id
     @Column(name = "tag_name_parent_fk")
     private String tagNameParent;
 
     @Column(name = "tag_discription")
     private String tagDiscripton;
 
-    @OneToMany(mappedBy = "tag")
-    private Set<UserExpensesTag> userExpensesTagSet = new HashSet<UserExpensesTag>(0);
+   /* @OneToMany(mappedBy = "tag",cascade = CascadeType.ALL)
+    private Set<UserExpensesTag> userExpensesTagSet = new HashSet<UserExpensesTag>(0);*/
 
     public Tag() {
     }

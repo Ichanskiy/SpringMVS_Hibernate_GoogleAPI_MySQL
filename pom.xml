@@ -134,13 +134,20 @@
       <artifactId>jstl</artifactId>
       <version>1.2</version>
     </dependency>
-
-    <!-- Test -->
+<!--
+    &lt;!&ndash; Test &ndash;&gt;
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.7</version>
       <scope>test</scope>
+    </dependency>-->
+
+    <!-- https://mvnrepository.com/artifact/junit/junit -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
     </dependency>
 
     <!--MysQL-->

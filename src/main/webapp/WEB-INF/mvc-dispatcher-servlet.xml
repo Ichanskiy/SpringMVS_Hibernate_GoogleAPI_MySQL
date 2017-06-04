@@ -38,28 +38,12 @@
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
-                <prop key="hbm2ddl.auto">update</prop>
+                <prop key="hbm2ddl.auto">create-drop</prop>
             </props>
         </property>
     </bean>
 
     <bean id="userDao" class="com.dao.implementation.UserDaoImpl">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
-    </bean>
-
-    <bean id="placePointDao" class="com.dao.implementation.PlacePointImpl">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
-    </bean>
-
-    <bean id="tagDao" class="com.dao.implementation.TagDaoImpl">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
-    </bean>
-
-    <bean id="userExpensesDao" class="com.dao.implementation.UserExpensesDaoImpl">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
-    </bean>
-
-    <bean id="userExpensesTagDao" class="com.dao.implementation.UserExpensesTagDaoImpl">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
     </bean>
 

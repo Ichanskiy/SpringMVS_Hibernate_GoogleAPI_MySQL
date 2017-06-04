@@ -9,18 +9,7 @@ import java.sql.Date;
 /**
  * Created by Ichanskiy on 2017-05-30.
  */
-public class AllEntityServiceImpl implements AllEntityService {
+public class AllEntityServiceImpl  {
 
 
-    @Override
-    @Transactional
-    public void saveAllUserExpansesData(AuthorisationUser authorisationUser, UserExpenses userExpenses, PlacePoint placePoint, Tag tag, UserExpensesTag userExpensesTag) {
-
-    }
-
-    @Override
-    @Transactional
-    public void getExpansesForDate(Date first, Date second) {
-
-    }
 }
