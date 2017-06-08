@@ -25,9 +25,8 @@ public class User {
     @Column(name = "user_birthdate")
     private Date user_birthday;
 
-  /*  @OneToMany(fetch = FetchType.LAZY, mappedBy = "user",cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user",cascade = CascadeType.ALL)
     private Set<UserExpenses> userExpensesSet = new HashSet<UserExpenses>(0);
-*/
     public User() {
     }
 

@@ -28,7 +28,7 @@ public class UserExpenses {
     @Column(name = "userexperses_date")
     private Date userExpensesDate;
 
-    /*@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_PHONE_FK", nullable = false)
     private User user;
 
@@ -36,7 +36,7 @@ public class UserExpenses {
     private Set<PlacePoint> placePointSet = new HashSet<PlacePoint>(0);
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "userExpenses", cascade = CascadeType.ALL)
-    private Set<UserExpensesTag> userExpensesTags = new HashSet<UserExpensesTag>(0);*/
+    private Set<UserExpensesTag> userExpensesTags = new HashSet<UserExpensesTag>(0);
 
     public UserExpenses() {
     }
