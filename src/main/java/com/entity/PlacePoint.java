@@ -1,5 +1,9 @@
 package com.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 
 /**
@@ -7,6 +11,9 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "placepoint")
+@Getter
+@Setter
+@ToString
 public class PlacePoint {
 
     @Id
@@ -23,9 +30,9 @@ public class PlacePoint {
     @Column(name = "placepoint_address")
     private String placePointAddress;
 
-  /*  @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PLACEPOINT_ID")
-    private UserExpenses userExpenses;*/
+    private UserExpenses userExpenses;
 
     public PlacePoint() {
     }
@@ -35,47 +42,5 @@ public class PlacePoint {
         this.placePointLong = placePointLong;
         this.placePointLat = placePointLat;
         this.placePointAddress = placePointAddress;
-    }
-
-    public int getPlacePointId() {
-        return placePointId;
-    }
-
-    public void setPlacePointId(int placePointId) {
-        this.placePointId = placePointId;
-    }
-
-    public double getPlacePointLong() {
-        return placePointLong;
-    }
-
-    public void setPlacePointLong(double placePointLong) {
-        this.placePointLong = placePointLong;
-    }
-
-    public double getPlacePointLat() {
-        return placePointLat;
-    }
-
-    public void setPlacePointLat(double placePointLat) {
-        this.placePointLat = placePointLat;
-    }
-
-    public String getPlacePointAddress() {
-        return placePointAddress;
-    }
-
-    public void setPlacePointAddress(String placePointAddress) {
-        this.placePointAddress = placePointAddress;
-    }
-
-    @Override
-    public String toString() {
-        return "PlacePoint{" +
-                "placePointId=" + placePointId +
-                ", placePointLong=" + placePointLong +
-                ", placePointLat=" + placePointLat +
-                ", placePointAddress='" + placePointAddress + '\'' +
-                '}';
     }
 }

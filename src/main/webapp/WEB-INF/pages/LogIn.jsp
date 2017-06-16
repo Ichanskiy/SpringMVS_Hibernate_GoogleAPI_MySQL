@@ -34,7 +34,7 @@
 
 <div id="div_reg">
     <c:url var="addAction" value="/expenses" />
-    <form:form action="${addAction}" commandName="authorisationUser">
+    <form:form action="${addAction}" commandName="authorisationUser" >
 
         <div class="form-group">
             <label for="email">Email</label>

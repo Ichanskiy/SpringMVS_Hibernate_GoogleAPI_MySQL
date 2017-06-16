@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements UserService<User> {
 
     private UserDao<User> userDao;
+
     @Autowired
     public void setUserDao(UserDao<User> userDao) {
         this.userDao = userDao;

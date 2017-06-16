@@ -3,55 +3,41 @@ package com.service.implementation;
 import com.dao.implementation.UserDaoImpl;
 import com.dao.interfaces.UserDao;
 import com.entity.User;
+import com.service.interfaces.UserService;
 import org.hibernate.SessionFactory;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-
-import static org.junit.Assert.*;
 
 /**
- * Created by Ichanskiy on 2017-06-02.
+ * Created by Ichanskiy on 2017-06-05.
  */
-
-@ContextConfiguration(locations = { "WEB-INF/mvc-dispatcher-servlet.xml" })
-
-
-
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration("classpath:mvc-dispatcher-servlet.xml")
+@Transactional
 public class AllEntityServiceImplTest {
-    private UserDao<User> userDao;
+
+
+    private UserService<User> userService;
 
     @Autowired
-    public void setUserDao(UserDao<User> userDao) {
-        this.userDao = userDao;
+    public void setUserService(UserService<User> userService) {
+        this.userService = userService;
     }
-    private SessionFactory sessionFactory;
-
-    @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
-    @BeforeClass
-    public static void setUp() {
-
-    }
-
 
     @Test
     public void saveAllUserExpansesData() throws Exception {
+        User user = new User("dfg", "dfg", "dffg");
 
-        User user = new User("777","ivan","ich@gmail.com");
-        UserServiceImpl userService = new UserServiceImpl();
-        System.out.println(user);
-        System.out.println(userService.registrationUser(user));
+        this.userService.registrationUser(user);
+        System.out.println("successfully");
     }
 
 }

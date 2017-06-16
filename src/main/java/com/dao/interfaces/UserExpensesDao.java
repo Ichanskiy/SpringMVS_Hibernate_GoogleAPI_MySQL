@@ -1,5 +1,7 @@
 package com.dao.interfaces;
 
+import com.entity.UserExpenses;
+
 import java.sql.Date;
 
 /**
@@ -7,7 +9,7 @@ import java.sql.Date;
  */
 public interface UserExpensesDao {
 
-    //void saveUserExpenses(UserExpenses userExpenses);
+    void saveUserExpenses(UserExpenses userExpenses);
     boolean getUserExpensesByPeriod(Date first, Date second);
     boolean getUserExpensestById(int id);
 }

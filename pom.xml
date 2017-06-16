@@ -144,17 +144,27 @@
     </dependency>-->
 
     <!-- https://mvnrepository.com/artifact/junit/junit -->
-    <dependency>
+  <!--  <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
-    </dependency>
+      <version>4.12</version>
+    </dependency>-->
 
     <!--MysQL-->
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>5.1.36</version>
+    </dependency>
+      <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <version>4.12</version>
+      </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.16.8</version>
     </dependency>
 
   </dependencies>

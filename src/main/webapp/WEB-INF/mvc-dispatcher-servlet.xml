@@ -47,7 +47,24 @@
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
     </bean>
 
+    <!--<bean id="userService" class="com.service.implementation.UserServiceImpl">
+        <property name="userDao" ref="userDao"/>
+    </bean>-->
+    <bean id="placePointDao" class="com.dao.implementation.PlacePointImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
 
+    <bean id="tagDao" class="com.dao.implementation.TagDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="userExpensesDao" class="com.dao.implementation.UserExpensesDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="userExpensesTagDao" class="com.dao.implementation.UserExpensesTagDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">

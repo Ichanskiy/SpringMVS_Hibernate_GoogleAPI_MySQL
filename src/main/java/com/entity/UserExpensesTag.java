@@ -1,5 +1,9 @@
 package com.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 
 /**
@@ -7,6 +11,9 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "userexpensestag")
+@Getter
+@Setter
+@ToString
 public class UserExpensesTag {
 
     @Column(name = "tag_name_fk")
@@ -16,7 +23,6 @@ public class UserExpensesTag {
     @Column(name = "user_expenses_id_fk")
     private int userExpensesIdFk;
 
-/*
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_EXPENSES_ID_FK")
     private UserExpenses userExpenses;
@@ -24,32 +30,7 @@ public class UserExpensesTag {
     @ManyToOne
     @JoinColumn(name = "TAG_NAME_FK")
     private Tag tag;
-*/
 
     public UserExpensesTag() {
-    }
-
-    public String getTagNameFk() {
-        return tagNameFk;
-    }
-
-    public void setTagNameFk(String tagNameFk) {
-        this.tagNameFk = tagNameFk;
-    }
-
-    public int getUserExpensesIdFk() {
-        return userExpensesIdFk;
-    }
-
-    public void setUserExpensesIdFk(int userExpensesIdFk) {
-        this.userExpensesIdFk = userExpensesIdFk;
-    }
-
-    @Override
-    public String toString() {
-        return "UserExpensesTag{" +
-                "tagNameFk='" + tagNameFk + '\'' +
-                ", userExpensesIdFk=" + userExpensesIdFk +
-                '}';
     }
 }
