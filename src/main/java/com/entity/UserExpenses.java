@@ -1,8 +1,6 @@
 package com.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -16,6 +14,8 @@ import java.util.Set;
 @Table(name = "userexpenses")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public class UserExpenses {
     
@@ -45,14 +45,11 @@ public class UserExpenses {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "userExpenses", cascade = CascadeType.ALL)
     private Set<UserExpensesTag> userExpensesTags = new HashSet<UserExpensesTag>(0);
 
-    public UserExpenses() {
-    }
-
-    public UserExpenses(int userExpensesId, String userPhoneFk, int placePointIdFk, double userExpensesCount, Date userExpensesDate) {
-        this.userExpensesId = userExpensesId;
-        this.userPhoneFk = userPhoneFk;
-        this.placePointIdFk = placePointIdFk;
+    public UserExpenses(double userExpensesCount, Date userExpensesDate) {
         this.userExpensesCount = userExpensesCount;
         this.userExpensesDate = userExpensesDate;
+    }
+
+    public UserExpenses(UserExpenses userExpenses) {
     }
 }

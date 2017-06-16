@@ -1,14 +1,14 @@
 package com.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 /**
  * Created by Ichanskiy on 2017-05-27.
  */
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public class AuthorisationUser extends User {
     

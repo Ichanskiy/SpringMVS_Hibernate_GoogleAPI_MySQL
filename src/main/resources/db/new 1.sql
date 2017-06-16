@@ -9,8 +9,8 @@ create table USERS
 create table PLACEPOINT
 (
   PLACEPOINT_ID      int(5) not null,
-  PLACEPOINT_LONG    numeric(30) not null,
-  PLACEPOINT_LAT     numeric(30) not null,
+  PLACEPOINT_LONG    double NOT NULL,
+  PLACEPOINT_LAT     double not null,
   PLACEPOINT_ADDRESS VARCHAR(250)
 ) ;
 

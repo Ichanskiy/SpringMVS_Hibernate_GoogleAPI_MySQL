@@ -429,32 +429,32 @@
 
 
         <section id="content-tab1">
-            <c:url var="addAction" value="/expenses/add"/>
-            <form:form action="${addAction}">
+            <c:url var="addAction" value="/expenses/add" />
+            <form:form action="${addAction}" commandName="dto">
 
                 <div class="form-group">
                     <label for="date_name">Дата події</label>
-                    <input type="date" name="date_name" id="date_name" class="form-control" placeholder="Дата події" required>
+                    <form:input path="userExpenses.userExpensesDate" type="date" name="date_name" id="date_name" class="form-control" placeholder="Дата події" />
                 </div>
 
                 <div class="form-group">
                     <label for="text_adres">Адреса</label>
-                    <input name="address" type="text" class="form-control" id="text_adres" placeholder="Введіть адресу"/>
+                    <form:input path="placePoint.placePointAddress" name="address" type="text" class="form-control" id="text_adres" placeholder="Введіть адресу"/>
                 </div>
 
                 <div class="form-group" id="lat_div">
                     <label for="lat">Широта</label>
-                    <input name="lat" type="text" class="form-control" id="lat" placeholder="Широта"/>
+                    <form:input path="placePoint.placePointLong"  name="lat" type="text" class="form-control" id="lat" placeholder="Широта"/>
                 </div>
 
                 <div class="form-group" id="long_div">
                     <label for="long">Довгота</label>
-                    <input name="long" type="text" class="form-control" id="long" placeholder="Довгота"/>
+                    <form:input path="placePoint.placePointLat" name="long" type="text" class="form-control" id="long" placeholder="Довгота"/>
                 </div>
 
                 <div class="form-group">
                     <label for="money">Кількість потрачених грошей</label>
-                    <input name="amount" type="number" class="form-control" id="money" value="0" min="1" max="40000" step="1" />
+                    <form:input path="userExpenses.userExpensesCount" name="amount" type="number" class="form-control" id="money" value="0" min="1" max="40000" step="1" />
                 </div>
 
 
@@ -522,8 +522,8 @@
                 <br>
                 <br>
                 <div class="form-group">
-                    <input  name="parentTag" type="hidden"  id="parrentLI" class="form-control" value="type">
-                    <input  name="childrenTag" type="text" class="form-control" id="typeProfit" placeholder="Тип"/>
+                    <form:input path="tag.tagNameParent"  name="parentTag" type="hidden"  id="parrentLI" class="form-control" value="type"/>
+                    <form:input path="tag.tagName"  name="childrenTag" type="text" class="form-control" id="typeProfit" placeholder="Тип"/>
                 </div>
 
                 <button type="submit" class="btn btn-success" >Додати</button>

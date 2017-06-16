@@ -1,8 +1,6 @@
 package com.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -15,6 +13,8 @@ import java.util.Set;
 @Table(name = "tag")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public class Tag {
 
@@ -30,13 +30,4 @@ public class Tag {
 
     @OneToMany(mappedBy = "tag",cascade = CascadeType.ALL)
     private Set<UserExpensesTag> userExpensesTagSet = new HashSet<UserExpensesTag>(0);
-
-    public Tag() {
-    }
-
-    public Tag(String tagName, String tagNameParent, String tagDiscripton) {
-        this.tagName = tagName;
-        this.tagNameParent = tagNameParent;
-        this.tagDiscripton = tagDiscripton;
-    }
 }

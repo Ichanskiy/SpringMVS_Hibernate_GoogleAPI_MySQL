@@ -1,8 +1,10 @@
 package com.controller;
 
 
+import com.dto.DTO;
 import com.entity.AuthorisationUser;
 import com.entity.User;
+import com.service.interfaces.AllEntityService;
 import com.service.interfaces.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,12 +29,13 @@ public class MainController {
 
     private static final Logger log = LoggerFactory.getLogger(MainController.class);
 
+    @Autowired
     private UserService<User> userService;
 
     @Autowired
-    public void setUserService(UserService<User> userService) {
-        this.userService = userService;
-    }
+    private AllEntityService allEntityService;
+
+
 
     @RequestMapping(value = "/LogIn", method = RequestMethod.GET)
     public String showLogInPage(Model model){
@@ -74,9 +77,17 @@ public class MainController {
     }
 
     @RequestMapping(value = "Expenses", method = RequestMethod.GET)
-    public String showExpansesPage(@ModelAttribute("authorisationUser") AuthorisationUser AuthorisationUser) {
+    public String showExpansesPage(@ModelAttribute("authorisationUser") AuthorisationUser AuthorisationUser, Model model) {
         System.out.println("AuthorisationUser = " + AuthorisationUser);
+        model.addAttribute("dto", new DTO());
         return "Expenses";
+    }
+
+    @RequestMapping(value = "/expenses/add", method = RequestMethod.POST)
+    public String addExpanses(@ModelAttribute("dto") DTO dto, @ModelAttribute ("authorisationUser") AuthorisationUser authorisationUser) {
+        System.out.println(dto);
+        allEntityService.saveAllUserExpansesData(dto, authorisationUser.getUser_phone());
+        return "redirect:/Expenses";
     }
 
    /* @RequestMapping(value = "expenses/add", method = RequestMethod.GET)

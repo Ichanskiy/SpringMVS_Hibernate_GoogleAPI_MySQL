@@ -1,12 +1,14 @@
 package com.service.implementation;
 
 import com.dao.interfaces.*;
+import com.dto.DTO;
 import com.entity.*;
 import com.service.interfaces.AllEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
@@ -32,9 +34,19 @@ public class AllEntityServiceImpl implements AllEntityService {
 
     @Override
     @Transactional
-    public void saveAllUserExpansesData(AuthorisationUser authorisationUser, UserExpenses userExpenses, PlacePoint placePoint, Tag tag, UserExpensesTag userExpensesTag) {
-        placePointDao.savePlacePoint(placePoint);
-        //placePointDao.getPalacePointById()
+    public void saveAllUserExpansesData(DTO dto, String idUser) {
+        System.out.println("-----");
+        int id = placePointDao.savePlacePoint(dto.getPlacePoint());
+        System.out.println("idPlacePoint = " + id);
+
+        UserExpenses userExpenses = new UserExpenses();
+        userExpenses.setUserExpensesCount(dto.getUserExpenses().getUserExpensesCount());
+        userExpenses.setUserExpensesDate(dto.getUserExpenses().getUserExpensesDate());
+        userExpenses.setUserPhoneFk(idUser);
+        userExpenses.setUserExpensesId(id);
+        userExpenses.setPlacePointIdFk(id);
+
+        userExpensesDao.saveUserExpenses(userExpenses);
     }
 
     @Override

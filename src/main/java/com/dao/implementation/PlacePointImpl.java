@@ -7,8 +7,6 @@ import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.Serializable;
-
 
 public class PlacePointImpl implements PlacePointDao {
 
@@ -21,13 +19,17 @@ public class PlacePointImpl implements PlacePointDao {
     }
 
     @Override
-    public void savePlacePoint(PlacePoint placePoint) {
+    public int savePlacePoint(PlacePoint placePoint) {
+        System.out.println("1");
+        System.out.println(placePoint);
         Session session = this.sessionFactory.getCurrentSession();
+        System.out.println("2");
         session.persist(placePoint);
-        Serializable id = session.save(placePoint);
+        System.out.println("3");
+        //Serializable id = session.save(placePoint);
+        System.out.println("id = " + placePoint.getPlacePointId());
         log.info("placePoint successfully saved. Details: " + placePoint);
-
-        //return id;
+        return placePoint.getPlacePointId();
     }
 
     @Override

@@ -1,8 +1,6 @@
 package com.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,6 +11,8 @@ import javax.persistence.*;
 @Table(name = "placepoint")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public class PlacePoint {
 
@@ -34,13 +34,4 @@ public class PlacePoint {
     @JoinColumn(name = "PLACEPOINT_ID")
     private UserExpenses userExpenses;
 
-    public PlacePoint() {
-    }
-
-    public PlacePoint(int placePointId, double placePointLong, double placePointLat, String placePointAddress) {
-        this.placePointId = placePointId;
-        this.placePointLong = placePointLong;
-        this.placePointLat = placePointLat;
-        this.placePointAddress = placePointAddress;
-    }
 }
