@@ -39,4 +39,9 @@ public class UserServiceImpl implements UserService<User> {
         System.out.println(checkUser);
         return checkUser;
     }
+
+    @Override
+    public User getUserById(String id ) {
+        return null;
+    }
 }

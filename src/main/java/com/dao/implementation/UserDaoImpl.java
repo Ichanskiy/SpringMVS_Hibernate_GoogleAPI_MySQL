@@ -51,4 +51,10 @@ public class UserDaoImpl implements UserDao<User> {
         System.out.println("if user exist --> return true");
         return !userList.isEmpty();
     }
+
+    @Override
+    public User getUserById(String id) {
+        Session session = this.sessionFactory.getCurrentSession();
+        return (User) session.get(User.class, id);
+    }
 }

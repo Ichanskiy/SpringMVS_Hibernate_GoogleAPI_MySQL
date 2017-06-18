@@ -45,7 +45,9 @@ public class AllEntityServiceImpl implements AllEntityService {
         userExpenses.setUserPhoneFk(idUser);
         userExpenses.setUserExpensesId(id);
         userExpenses.setPlacePointIdFk(id);
-
+        userExpenses.setUser(userDao.getUserById(idUser));
+        //userExpenses.setUser();
+        //eSystem.out.println(userExpenses);
         userExpensesDao.saveUserExpenses(userExpenses);
     }
 
