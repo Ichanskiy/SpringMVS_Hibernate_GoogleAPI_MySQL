@@ -45,10 +45,16 @@ public class AllEntityServiceImpl implements AllEntityService {
         userExpenses.setUserPhoneFk(idUser);
         userExpenses.setUserExpensesId(id);
         userExpenses.setPlacePointIdFk(id);
-        userExpenses.setUser(userDao.getUserById(idUser));
-        //userExpenses.setUser();
-        //eSystem.out.println(userExpenses);
         userExpensesDao.saveUserExpenses(userExpenses);
+        //userExpenses.setUser(userDao.getUserById(idUser));
+        //userExpenses.setUser();
+        //System.out.println(userExpenses);
+
+        UserExpensesTag userExpensesTag = new UserExpensesTag();
+        userExpensesTag.setUserExpensesIdFk(id);
+        userExpensesTag.setTagNameFk(dto.getTag().getTagNameParent());
+        System.out.println("userExpensesTag" + userExpensesTag);
+        userExpansesTagDao.saveUserExpensesTag(userExpensesTag);
     }
 
     @Override

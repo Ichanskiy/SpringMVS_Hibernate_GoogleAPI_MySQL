@@ -28,6 +28,6 @@ public class Tag {
     @Column(name = "tag_discription")
     private String tagDiscripton;
 
-    @OneToMany(mappedBy = "tag",cascade = CascadeType.ALL)
-    private Set<UserExpensesTag> userExpensesTagSet = new HashSet<UserExpensesTag>(0);
+    /*@OneToMany(mappedBy = "tag",cascade = CascadeType.ALL)
+    private Set<UserExpensesTag> userExpensesTagSet = new HashSet<UserExpensesTag>(0);*/
 }
