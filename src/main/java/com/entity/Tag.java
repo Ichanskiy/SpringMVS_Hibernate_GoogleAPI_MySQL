@@ -30,4 +30,11 @@ public class Tag {
 
     /*@OneToMany(mappedBy = "tag",cascade = CascadeType.ALL)
     private Set<UserExpensesTag> userExpensesTagSet = new HashSet<UserExpensesTag>(0);*/
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "userexpenses",
+            joinColumns = @JoinColumn(name = "tag_id"),
+            inverseJoinColumns = @JoinColumn(name = "userexpenses_id"))
+    Set<UserExpenses> userExpenses;
+
 }

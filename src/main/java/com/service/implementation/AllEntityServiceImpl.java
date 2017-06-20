@@ -35,17 +35,21 @@ public class AllEntityServiceImpl implements AllEntityService {
     @Override
     @Transactional
     public void saveAllUserExpansesData(DTO dto, String idUser) {
-        System.out.println("-----");
+
+
         int id = placePointDao.savePlacePoint(dto.getPlacePoint());
         System.out.println("idPlacePoint = " + id);
 
         UserExpenses userExpenses = new UserExpenses();
         userExpenses.setUserExpensesCount(dto.getUserExpenses().getUserExpensesCount());
         userExpenses.setUserExpensesDate(dto.getUserExpenses().getUserExpensesDate());
-        userExpenses.setUserPhoneFk(idUser);
+        //userExpenses.setUserPhoneFk(idUser);
         userExpenses.setUserExpensesId(id);
         userExpenses.setPlacePointIdFk(id);
+        userExpenses.setUser(userDao.getUserById(idUser));
+
         userExpensesDao.saveUserExpenses(userExpenses);
+
         //userExpenses.setUser(userDao.getUserById(idUser));
         //userExpenses.setUser();
         //System.out.println(userExpenses);

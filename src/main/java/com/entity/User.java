@@ -32,8 +32,8 @@ public class User {
 
 
 
-/*  @OneToMany(fetch = FetchType.LAZY, mappedBy = "user",cascade = CascadeType.ALL)
-    private Set<UserExpenses> userExpensesSet = new HashSet<UserExpenses>(0);*/
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "user",cascade = CascadeType.ALL)
+    private Set<UserExpenses> userExpensesSet = new HashSet<UserExpenses>(0);
 
     public User() {
     }
