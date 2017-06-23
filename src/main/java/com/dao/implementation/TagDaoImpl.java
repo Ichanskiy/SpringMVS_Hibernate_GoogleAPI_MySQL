@@ -23,8 +23,14 @@ public class TagDaoImpl implements TagDao {
     @Override
     public void saveTag(Tag tag) {
         Session session = this.sessionFactory.getCurrentSession();
-        session.persist(tag);
-        log.info("tag successfully saved. Details: " + tag);
+        System.out.println(tag.getTagName());
+        if (!getTagByTagName(tag.getTagName())){
+            session.save(tag);
+            log.info("tag successfully saved. Details: " + tag);
+        } else {
+            log.info("tag successfully saved. Details: " + tag);
+            System.out.println("tag not save");
+        }
     }
 
     @Override
@@ -34,7 +40,7 @@ public class TagDaoImpl implements TagDao {
         Tag tag = (Tag) session.get(Tag.class, name);
         System.out.println(tag);
         if (tag  == null) {
-            return  true;
-        }else return false;
+            return  false;
+        }else return true;
     }
 }

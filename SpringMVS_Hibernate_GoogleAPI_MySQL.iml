@@ -26,7 +26,7 @@
       <configuration>
         <datasource-map>
           <unit-entry name="hibernate.cfg.xml" />
-          <unit-entry name="hibernate4AnnotatedSessionFactory" value="aa4de0a8-6e43-4523-b06d-8a6cc189e8e4" />
+          <unit-entry name="hibernate4AnnotatedSessionFactory" value="75171434-289c-4d16-904d-3e205248b80e" />
         </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernate.cfg.xml" />

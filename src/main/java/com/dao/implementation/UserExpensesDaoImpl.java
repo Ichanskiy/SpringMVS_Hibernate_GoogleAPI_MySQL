@@ -12,7 +12,7 @@ import java.sql.Date;
 /**
  * Created by Ichanskiy on 2017-05-30.
  */
-public class UserExpensesDaoImpl implements UserExpensesDao{
+public class UserExpensesDaoImpl implements UserExpensesDao {
 
     private static final Logger log = LoggerFactory.getLogger(UserDaoImpl.class);
 

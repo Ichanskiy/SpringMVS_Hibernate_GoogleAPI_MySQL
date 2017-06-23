@@ -20,7 +20,10 @@
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/diplom"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/diplomtest"/>
+        <!--
+                <property name="url" value="jdbc:mysql://localhost:3306/diplom"/>
+        -->
         <property name="username" value="root"/>
         <property name="password" value="1111"/>
     </bean>
@@ -38,7 +41,7 @@
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
-                <prop key="hbm2ddl.auto">create</prop>
+                <prop key="hbm2ddl.auto">update</prop>
             </props>
         </property>
     </bean>
@@ -62,9 +65,6 @@
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
     </bean>
 
-    <bean id="userExpensesTagDao" class="com.dao.implementation.UserExpensesTagDaoImpl">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
-    </bean>
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">

@@ -1,11 +1,13 @@
 package com.entity;
 
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.HashSet;
 import java.util.Set;
-import lombok.*;
 
 /**
  * Created by Ichanskiy on 2017-05-25.
@@ -32,8 +34,8 @@ public class User {
 
 
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "user",cascade = CascadeType.ALL)
-    private Set<UserExpenses> userExpensesSet = new HashSet<UserExpenses>(0);
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user",cascade = CascadeType.ALL)
+    private Set<UserExpenses> userExpensesSet/* = new HashSet<UserExpenses>(0)*/;
 
     public User() {
     }

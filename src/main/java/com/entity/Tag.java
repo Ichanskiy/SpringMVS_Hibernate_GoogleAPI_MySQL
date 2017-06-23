@@ -3,7 +3,6 @@ package com.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -15,7 +14,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@ToString(exclude = "userExpenses")
 public class Tag {
 
     @Id
@@ -28,13 +27,14 @@ public class Tag {
     @Column(name = "tag_discription")
     private String tagDiscripton;
 
-    /*@OneToMany(mappedBy = "tag",cascade = CascadeType.ALL)
-    private Set<UserExpensesTag> userExpensesTagSet = new HashSet<UserExpensesTag>(0);*/
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    /*@ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "userexpenses",
             joinColumns = @JoinColumn(name = "tag_id"),
             inverseJoinColumns = @JoinColumn(name = "userexpenses_id"))
+    Set<UserExpenses> userExpenses;*/
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "tagSet")
     Set<UserExpenses> userExpenses;
 
 }

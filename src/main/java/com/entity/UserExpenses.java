@@ -4,7 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Ichanskiy on 2017-05-30.
@@ -15,18 +16,12 @@ import java.util.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = "user")
+@ToString(exclude = {"user","placePointSet","placePointSet"})
 public class UserExpenses {
     
     @Id
     @Column(name = "userexpenses_id")
     private int userExpensesId;
-
-//    @Column(name = "user_phone_string")
-//    private String userPhoneFk;
-
-    @Column(name = "placepoint_id_fk")
-    private int placePointIdFk;
 
     @Column(name = "userexperses_count")
     private double userExpensesCount;
@@ -34,21 +29,25 @@ public class UserExpenses {
     @Column(name = "userexperses_date")
     private Date userExpensesDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "USER_PHONE_FK", nullable = false)
+    @ManyToOne//(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_phone_fk", nullable = false)
     private User user;
-
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "userExpenses",cascade = CascadeType.ALL)
     private Set<PlacePoint> placePointSet = new HashSet<PlacePoint>(0);
 
 
-  /*  @OneToMany(fetch = FetchType.LAZY, mappedBy = "userExpenses", cascade = CascadeType.ALL)
-    private Set<UserExpensesTag> userExpensesTags = new HashSet<UserExpensesTag>(0);*/
+   /* @ManyToMany
+    @JoinTable(name = "tagexpanses", joinColumns = {@JoinColumn(name = "tag_id")}, inverseJoinColumns = {@JoinColumn(name = "userexpenses_id")})
+    Set<Tag> tags;*/
 
-    @ManyToMany
-    @JoinTable(name = "tag", joinColumns = {@JoinColumn(name = "tagID")}, inverseJoinColumns = {@JoinColumn(name = "expensesID")})
-    Set<Tag> tags;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "tagexpanses", joinColumns =
+            @JoinColumn(name = "userexpenses_id"),
+            inverseJoinColumns =  @JoinColumn(name = "tag_name",
+                    nullable = false, updatable = false) )
+    Set<Tag> tagSet;
+
 
     public UserExpenses(double userExpensesCount, Date userExpensesDate) {
         this.userExpensesCount = userExpensesCount;
