@@ -1,7 +1,7 @@
 package com.dao.implementation;
 
 import com.dao.interfaces.UserDao;
-import com.entity.AuthorisationUser;
+import com.entity.subsidary.AuthorisationUser;
 import com.entity.User;
 import org.hibernate.Query;
 import org.hibernate.Session;

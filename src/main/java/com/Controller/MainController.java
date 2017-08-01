@@ -2,8 +2,9 @@ package com.controller;
 
 
 import com.dto.DTO;
-import com.entity.AuthorisationUser;
+import com.entity.subsidary.AuthorisationUser;
 import com.entity.User;
+import com.entity.subsidary.Information;
 import com.service.interfaces.AllEntityService;
 import com.service.interfaces.UserService;
 import org.slf4j.Logger;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Map;
 
 
 /**
@@ -80,6 +83,7 @@ public class MainController {
     public String showExpansesPage(@ModelAttribute("authorisationUser") AuthorisationUser AuthorisationUser, Model model) {
         System.out.println("AuthorisationUser = " + AuthorisationUser);
         model.addAttribute("dto", new DTO());
+        model.addAttribute("informationData", new Information());
         return "Expenses";
     }
 
@@ -90,9 +94,14 @@ public class MainController {
         return "redirect:/Expenses";
     }
 
-   /* @RequestMapping(value = "expenses/add", method = RequestMethod.GET)
-    public String addExpanses(@ModelAttribute("authorisationUser") AuthorisationUser user) {
-        System.out.println("quth = " + user);
-        return "Expenses";
-    }*/
+    @RequestMapping(value = "/expenses/dateInfo", method = RequestMethod.GET)
+    public String showInfoDate(@ModelAttribute("authorisationUser") AuthorisationUser user, @ModelAttribute("informationData") Information information) {
+
+        Map hashMapTegExpenses;
+        Map<String, Double> removeTag;
+
+        hashMapTegExpenses = allEntityService.Mamdani(information.getFirstDate(), information.getSecondDate(), user.getUser_phone());
+
+        return "Result";
+    }
 }

@@ -1,5 +1,6 @@
-package com.entity;
+package com.entity.subsidary;
 
+import com.entity.User;
 import lombok.*;
 
 /**

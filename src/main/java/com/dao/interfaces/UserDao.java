@@ -1,6 +1,6 @@
 package com.dao.interfaces;
 
-import com.entity.AuthorisationUser;
+import com.entity.subsidary.AuthorisationUser;
 import com.entity.User;
 
 /**

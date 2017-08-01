@@ -1,7 +1,7 @@
 package com.service.implementation;
 
 import com.dao.interfaces.UserDao;
-import com.entity.AuthorisationUser;
+import com.entity.subsidary.AuthorisationUser;
 import com.entity.User;
 import com.service.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
+import java.util.Map;
 
 /**
  * Created by Ichanskiy on 2017-05-30.
@@ -56,6 +57,12 @@ public class AllEntityServiceImpl implements AllEntityService {
         tagDao.saveTag(tag);
 
     }
+
+    @Override
+    public Map Mamdani(Date first, Date second, String phone) {
+        return null;
+    }
+
 
     @Override
     @Transactional

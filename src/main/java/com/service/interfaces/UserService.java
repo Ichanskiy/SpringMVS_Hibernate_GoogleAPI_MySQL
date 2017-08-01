@@ -1,10 +1,7 @@
 package com.service.interfaces;
 
-import com.entity.AuthorisationUser;
+import com.entity.subsidary.AuthorisationUser;
 import com.entity.User;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.sql.SQLException;
 
 /**
  * Created by Ichanskiy on 2017-05-26.

@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Ichanskiy
+  Date: 2017-05-18
+  Time: 18:34
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -246,9 +253,6 @@
         #tab4:checked ~ #content-tab4 {
             display: block;
         }
-        /* Убираем текст с переключателей
-* и оставляем иконки на малых экранах
-*/
 
         @media screen and (max-width: 680px) {
             .tabs > label {
@@ -266,6 +270,9 @@
             }
         }
         #lat_div {
+            display: none;
+        }
+        #listadrdiv {
             display: none;
         }
 
@@ -361,17 +368,6 @@
             $('#infoSelect').attr("value", s);
         }
 
-        function initialize() {
-            var mapOptions = {
-                zoom: 8,
-                center: new google.maps.LatLng(50.4384221, 30.4796225)
-            };
-            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-            geocoder = new google.maps.Geocoder();
-            google.maps.event.addListener(map, 'click', function(event) {
-                addMarker(event.latLng);
-            });
-        }
         function selectItem(element)
         {
             $('#typeProfit').val(element.innerHTML);
@@ -379,40 +375,73 @@
             $('#parrentLI').attr("value", s);
         }
 
-        function addMarker(location) {
-            if(!location) return;
-            if(infowindow) infowindow.close();
-            var marker = new google.maps.Marker({
-                position: location,
-                map: map
-            });
-            geocoder.geocode({latLng:location}, function (results, status) {
-                var addr = '';
+        var map, directionsService;
 
-                addCoord(location);
+        function renderDirections(result, polylineOpts) {
+            var directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
 
-                if(status == 'OK') {
-                    if(results.length == 0) {
-                        addr = 'None';
-                    } else {
-                        addr = results[0].formatted_address;
-                    }
-                    addAdresFild(addr);
-                    var text = 'Адрес: <br>' + addr;
-                    infowindow = new google.maps.InfoWindow({ content: text });
-                    infowindow.open(map,marker);
+            if(polylineOpts) {
+                directionsRenderer.setOptions({
+                    polylineOptions: polylineOpts
+                });
+            }
 
-                    google.maps.event.addListener(marker, 'click', function () {
-                        if(infowindow) infowindow.close();
-                        infowindow = new google.maps.InfoWindow({ content: text });
-                        infowindow.open(map, this);
-                    });
-                }
+            directionsRenderer.setDirections(result);
+        }
+
+
+
+        function requestDirections(start, end, polylineOpts) {
+            directionsService.route({
+                origin: start,
+                destination: end,
+                travelMode: google.maps.DirectionsTravelMode.DRIVING
+            }, function(result) {
+                renderDirections(result, polylineOpts);
             });
         }
-        google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
 
+        function initialize() {
+
+            var mapOptions = {
+                zoom: 30,
+                center: new google.maps.LatLng(50.4384221, 30.4796225)
+            };
+            map = new google.maps.Map(document.getElementById('map-canvas'),    mapOptions);
+            directionsService = new google.maps.DirectionsService();
+
+            var listadr = $('#listadr').html().split(';');
+            var color = ["#900F0D", "#FF666D", "#6A66FF", "#BF66FF",
+                "##66A9FF", "#FF9666", "#8B4841", "#8b4841",
+                ];
+            var indxcolor = 0;
+
+            for (var i = 0; i < listadr.length - 1; i++) {
+                listadr[i] = listadr[i].replace(/(^\s*)|(\s*)$/g, '');
+            }
+
+            for (var i = 0; i < listadr.length - 2; i++) {
+                requestDirections(listadr[i], listadr[i + 1], {strokeColor: color[indxcolor]});
+
+                console.log(color[indxcolor] + "  " + " indx: " + indxcolor)
+
+                indxcolor++;
+                if (indxcolor == color.length)
+                    indxcolor = 0;
+            }
+            requestDirections(listadr[listadr.length - 2], listadr[0], {strokeColor: color[indxcolor]});
+
+            setTimeout(function() {
+                map.setZoom(12);
+            }, 2000);
+
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+</head>
 <body>
 
 <h2 align="center">Дипломна робота</h2>
@@ -422,143 +451,61 @@
 <div id= "field_div">
     <div class="tabs">
         <input id="tab1" type="radio" name="tabs" checked>
-        <label for="tab1" style="display: inline-block;" title="Wordpress">Полля вводу</label>
+        <label for="tab1" style="display: inline-block;" title="Wordpress">Результати</label>
 
         <input id="tab2" type="radio" name="tabs">
-        <label for="tab2" style="display: inline-block;" title="Windows">Результати</label>
+        <label for="tab2" style="display: inline-block;" title="Windows">Полля вводу</label>
 
 
         <section id="content-tab1">
-            <c:url var="addAction" value="/expenses/add" />
-            <form:form action="${addAction}" commandName="dto">
-
-                <div class="form-group">
-                    <label for="date_name">Дата події</label>
-                    <form:input path="userExpenses.userExpensesDate" type="date" name="date_name" id="date_name" class="form-control" placeholder="Дата події" />
-                </div>
-
-                <div class="form-group">
-                    <label for="text_adres">Адреса</label>
-                    <form:input path="placePoint.placePointAddress" name="address" type="text" class="form-control" id="text_adres" placeholder="Введіть адресу"/>
-                </div>
-
-                <div class="form-group" id="lat_div">
-                    <label for="lat">Широта</label>
-                    <form:input path="placePoint.placePointLong"  name="lat" type="text" class="form-control" id="lat" placeholder="Широта"/>
-                </div>
-
-                <div class="form-group" id="long_div">
-                    <label for="long">Довгота</label>
-                    <form:input path="placePoint.placePointLat" name="long" type="text" class="form-control" id="long" placeholder="Довгота"/>
-                </div>
-
-                <div class="form-group">
-                    <label for="money">Кількість потрачених грошей</label>
-                    <form:input path="userExpenses.userExpensesCount" name="amount" type="number" class="form-control" id="money" value="0" min="1" max="40000" step="1" />
-                </div>
-
-
-                <br>
-                <div id="mainul">
-                    <b><span class="colorGD">Виберіть тип витрат</span></b>
-                    <ul>
-                        <li class="seacher">
-                            <span class="colorGD">Їжа</span>
-                            <ul>
-                                <li class="liFix liFirstFix">
-                                    <span class="colorGU" onclick="selectItem(this)">Продукти</span>
-                                </li>
-                                <li class="liFix">
-                                    <span class="colorGU" onclick="selectItem(this)">Ресторан</span>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="seacher">
-                            <span class="colorGD">Одяг</span>
-                            <ul>
-                                <li class="liFix liFirstFix">
-                                    <span class="colorGU" onclick="selectItem(this)">Взуття</span>
-                                </li>
-                                <li class="liFix">
-                                    <span class="colorGU" onclick="selectItem(this)">Штани</span>
-                                </li>
-                                <li class="liFix">
-                                    <span class="colorGU" onclick="selectItem(this)">Рубашки</span>
-                                </li>
-                                <li class="liFix">
-                                    <span class="colorGU" onclick="selectItem(this)">Верхній одяг</span>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="seacher">
-                            <span class="colorGD">Подарунки</span>
-                            <ul>
-                                <li class="liFix liFirstFix">
-                                    <span class="colorGU" onclick="selectItem(this)">Іграшки</span>
-                                </li>
-                                <li class="liFix">
-                                    <span class="colorGU" onclick="selectItem(this)">Прикраси</span>
-                                </li>
-                                <li class="liFix">
-                                    <span class="colorGU" onclick="selectItem(this)">Квіти</span>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="seacher">
-                            <span class="colorGD">Розваги</span>
-                            <ul>
-                                <li class="liFix liFirstFix">
-                                    <span class="colorGU" onclick="selectItem(this)">Атракціони</span>
-                                </li>
-                                <li class="liFix">
-                                    <span class="colorGU" onclick="selectItem(this)">Кінотеатр</span>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <br>
-                <br>
-                <div class="form-group">
-                    <form:input path="tag.tagNameParent"  name="parentTag" type="hidden"  id="parrentLI" class="form-control" value="type"/>
-                    <form:input path="tag.tagName"  name="childrenTag" type="text" class="form-control" id="typeProfit" placeholder="Тип"/>
-                </div>
-
-                <button type="submit" class="btn btn-success" >Додати</button>
-            </form:form>
-        </section>
-
-
-        <section id="content-tab2">
-            <c:url var="addAction3" value="/expenses/dateInfo"/>
-            <form:form action="${addAction3}" commandName="informationData">
+            <c:url var="addAction3" value="/expenses/possibility/dateInfo"/>
+            <form:form action="${addAction3}">
                 <b>Період витрат:</b>
-                    <p></p>
-                    <div class="form-group" style="display: inline-block;">
-                        <label for="date_first">з:</label>
-                        <form:input path="firstDate" type="date" style="width: 150px;" name="date_first" id="date_first" class="form-control"  />
-                    </div>
-                    <div class="form-group" style="display: inline-block;">
-                        <label for="date_second">по:</label>
-                        <form:input path="secondDate" type="date" style="width: 150px;" name="date_second" id="date_second" class="form-control" />
-                    </div>
+                <p></p>
+                <div class="form-group" style="display: inline-block;">
+                    <label for="date_first">з:</label>
+                    <input type="date" style="width: 150px;" name="date_first" id="date_first" class="form-control"  placeholder="Введите email">
+                </div>
+                <div class="form-group" style="display: inline-block;">
+                    <label for="date_second">по:</label>
+                    <input type="date" style="width: 150px;" name="date_second" id="date_second" type="password" class="form-control" placeholder="Пароль">
+                </div>
                 <br>
                 Розваги
-                    <form:input path="avocation" name="avocation" min="0" max="1" step="0.1" id="size"  value="0"/>
+                <input type="range" name="rosvagy_range" min="0" max="1" step="0.1" id="size"  value="0">
                 <br>
                 Одяг
-                     <form:input path="clothes" type="range" name="odyg_range" min="0" max="1" step="0.1" id="size"  value="0"/>
+                <input type="range" name="odyg_range" min="0" max="1" step="0.1" id="size"  value="0">
                 <br>
                 Їжа
-                     <form:input path="food" type="range" name="eda_range" min="0" max="1" step="0.1" id="size"  value="0"/>
+                <input type="range" name="eda_range" min="0" max="1" step="0.1" id="size"  value="0">
                 <br>
-                    <a href="" target="_blank">
-                        <button type="submit" class="btn btn-success">Переглянути</button>
-                    </a>
+                <br>
+                <b>Рекомендації, як можна можна зекономити:</b>
+                <br><br>
+                <c:if test="${!empty percent}">
+                    <b>Економити на:                 </b><i>${all_tag_str}</i><br><br>
+                    <b>Сума зекономлених кошт: </b><i>${sum}</i><br><br>
+                    <b>Відсоток економії від витрат: </b><i>${percent}</i><br><br><br>
+                </c:if>
+                <c:if test="${!empty pointList}">
+                    <div class="form-group" id="listadrdiv" >
+                        <code id="listadr" >
+                            <c:forEach items="${pointList}" var="pointList">
+                            ${pointList};
+                            </c:forEach>
+                        </code>
+                    </div>
+                </c:if>
+                <a href="" target="_blank">
+                    <button type="submit" class="btn btn-success">Переглянути</button>
+                </a>
+
 
             </form:form>
+        </section>
+        <section id="content-tab2">
+            <a href="<c:url value="/expenses"/>" ><button type="button" class="btn btn-success">Перейти до додавання витрат</button></a>
         </section>
     </div>
 
@@ -588,3 +535,4 @@
 </script>
 </body>
 </html>
+
