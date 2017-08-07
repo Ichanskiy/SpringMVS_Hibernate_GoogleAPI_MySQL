@@ -29,8 +29,8 @@
     </bean>
 
     <!-- Hibernate 4 SessionFactory Bean definition -->
-    <bean id="hibernate4AnnotatedSessionFactory"
-          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+    <bean id="hibernate5AnnotatedSessionFactory"
+          class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan">
             <list>
@@ -46,29 +46,33 @@
         </property>
     </bean>
 
-    <bean id="userDao" class="com.dao.implementation.UserDaoImpl">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    <bean id="genericDao" class="com.dao.implementation.GenericDao">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
     </bean>
 
-    <!--<bean id="userService" class="com.service.implementation.UserServiceImpl">
-        <property name="userDao" ref="userDao"/>
-    </bean>-->
-    <bean id="placePointDao" class="com.dao.implementation.PlacePointImpl">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
-    </bean>
+    <!--<bean id="userDao" class="com.dao.implementation.UserDaoImpl">-->
+        <!--<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>-->
+    <!--</bean>-->
 
-    <bean id="tagDao" class="com.dao.implementation.TagDaoImpl">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
-    </bean>
+    <!--&lt;!&ndash;<bean id="userService" class="com.service.implementation.UserServiceImpl">-->
+        <!--<property name="userDao" ref="userDao"/>-->
+    <!--</bean>&ndash;&gt;-->
+    <!--<bean id="placePointDao" class="com.dao.implementation.PlacePointImpl">-->
+        <!--<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>-->
+    <!--</bean>-->
 
-    <bean id="userExpensesDao" class="com.dao.implementation.UserExpensesDaoImpl">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
-    </bean>
+    <!--<bean id="tagDao" class="com.dao.implementation.TagDaoImpl">-->
+        <!--<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>-->
+    <!--</bean>-->
+
+    <!--<bean id="userExpensesDao" class="com.dao.implementation.UserExpensesDaoImpl">-->
+        <!--<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>-->
+    <!--</bean>-->
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
     </bean>
 
     <mvc:default-servlet-handler/>

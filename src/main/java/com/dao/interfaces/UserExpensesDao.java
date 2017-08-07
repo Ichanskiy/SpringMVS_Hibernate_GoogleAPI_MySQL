@@ -3,7 +3,7 @@ package com.dao.interfaces;
 import com.entity.UserExpenses;
 
 import java.sql.Date;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Ichanskiy on 2017-05-30.
@@ -11,6 +11,6 @@ import java.util.Map;
 public interface UserExpensesDao {
 
     void saveUserExpenses(UserExpenses userExpenses);
-    Map getExpensesForTag(Date first, Date second, String phone);
+    List getExpensesForTag(Date first, Date second, String phone);
     boolean getUserExpensesById(int id);
 }

@@ -4,38 +4,28 @@ import com.dao.interfaces.UserDao;
 import com.entity.subsidary.AuthorisationUser;
 import com.entity.User;
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
+import java.util.*;
 
 
-public class UserDaoImpl implements UserDao<User> {
+public class UserDaoImpl extends GenericDao implements UserDao<User> {
 
     private static final Logger log = LoggerFactory.getLogger(UserDaoImpl.class);
 
-
-    private SessionFactory sessionFactory;
-
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
     @Override
     public void saveUser(User user) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = getSessionFactory().getCurrentSession();
         session.persist(user);
         log.info("User successfully saved. Details: " + user);
     }
 
     @Override
     public boolean getUserByPhone(String phone) {
-        Session session = this.sessionFactory.getCurrentSession();
-        System.out.println(phone);
+        Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(User.class);
         criteria.add(Restrictions.eq("user_phone", phone));
         if (criteria.uniqueResult() != null)
@@ -46,7 +36,7 @@ public class UserDaoImpl implements UserDao<User> {
 
     @Override
     public boolean getUser(AuthorisationUser authorisationUser) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(User.class);
         criteria.add(Restrictions.eq("user_phone", authorisationUser.getUser_phone()));
         criteria.add(Restrictions.eq("user_email", authorisationUser.getUser_email()));
@@ -61,7 +51,7 @@ public class UserDaoImpl implements UserDao<User> {
 
     @Override
     public User getUserById(String id) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = getSessionFactory().getCurrentSession();
         return (User) session.get(User.class, id);
     }
 }
