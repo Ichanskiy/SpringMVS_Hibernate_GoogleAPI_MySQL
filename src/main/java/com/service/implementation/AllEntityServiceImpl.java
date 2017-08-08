@@ -47,6 +47,7 @@ public class AllEntityServiceImpl implements AllEntityService {
         userExpenses.setUserExpensesDate(dto.getUserExpenses().getUserExpensesDate());
         userExpenses.setUserExpensesId(id);
         userExpenses.setUser(userDao.getUserById(idUser));
+        userExpenses.setTag(dto.getTag());
         userExpensesDao.saveUserExpenses(userExpenses);
 
         Tag tag = new Tag();

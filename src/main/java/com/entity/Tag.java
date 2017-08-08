@@ -34,7 +34,9 @@ public class Tag {
             inverseJoinColumns = @JoinColumn(name = "userexpenses_id"))
     Set<UserExpenses> userExpenses;*/
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "tagSet")
+//    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "tagSet")
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tag",cascade = CascadeType.ALL)
     Set<UserExpenses> userExpenses;
 
 }

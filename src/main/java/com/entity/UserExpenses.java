@@ -40,13 +40,16 @@ public class UserExpenses {
    /* @ManyToMany
     @JoinTable(name = "tagexpanses", joinColumns = {@JoinColumn(name = "tag_id")}, inverseJoinColumns = {@JoinColumn(name = "userexpenses_id")})
     Set<Tag> tags;*/
+//
+//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinTable(name = "tagexpanses", joinColumns =
+//            @JoinColumn(name = "userexpenses_id"),
+//            inverseJoinColumns =  @JoinColumn(name = "tag_name",
+//                    nullable = false, updatable = false) )
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "tagexpanses", joinColumns =
-            @JoinColumn(name = "userexpenses_id"),
-            inverseJoinColumns =  @JoinColumn(name = "tag_name",
-                    nullable = false, updatable = false) )
-    Set<Tag> tagSet;
+    @ManyToOne
+    @JoinColumn(name = "tag_name_fk", nullable = false)
+    private Tag tag;
 
 
     public UserExpenses(double userExpensesCount, Date userExpensesDate) {

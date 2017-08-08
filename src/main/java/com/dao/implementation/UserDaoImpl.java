@@ -6,6 +6,11 @@ import com.entity.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,22 +39,27 @@ public class UserDaoImpl implements UserDao<User> {
     public boolean getUserByPhone(String phone) {
         Session session = this.sessionFactory.getCurrentSession();
         System.out.println(phone);
-        User user = (User) session.get(User.class, phone);
-        System.out.println(user);
-        if (user  == null) {
-            return  true;
-        }else return false;
+        Criteria criteria = session.createCriteria(User.class);
+        criteria.add(Restrictions.eq("user_phone", phone));
+        if (criteria.uniqueResult() != null)
+            return false;
+        else
+            return true;
     }
 
     @Override
     public boolean getUser(AuthorisationUser authorisationUser) {
         Session session = this.sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from User as user where user.user_email = ? and user_phone = ?");
-        query.setString(0, authorisationUser.getUser_email());
-        query.setString(1, authorisationUser.getUser_phone());
-        List userList = query.list();
-        System.out.println("if user exist --> return true");
-        return !userList.isEmpty();
+        Criteria criteria = session.createCriteria(User.class);
+        criteria.add(Restrictions.eq("user_phone", authorisationUser.getUser_phone()));
+        criteria.add(Restrictions.eq("user_email", authorisationUser.getUser_email()));
+        return !criteria.list().isEmpty();
+//        Query query = session.createQuery("from User as user where user.user_email = ? and user_phone = ?");
+//        query.setString(0, authorisationUser.getUser_email());
+//        query.setString(1, authorisationUser.getUser_phone());
+//        List userList = query.list();
+//        System.out.println("if user exist --> return true");
+//        return !userList.isEmpty();
     }
 
     @Override
