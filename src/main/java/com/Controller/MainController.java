@@ -21,11 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 
-
-/**
- * Created by Ichanskiy on 2017-05-25.
- */
-
 @Controller
 @SessionAttributes("authorisationUser")
 public class MainController {
@@ -37,8 +32,6 @@ public class MainController {
 
     @Autowired
     private AllEntityService allEntityService;
-
-
 
     @RequestMapping(value = "/LogIn", method = RequestMethod.GET)
     public String showLogInPage(Model model){
@@ -56,7 +49,6 @@ public class MainController {
     @RequestMapping(value = "expenses", method = RequestMethod.POST)
     public String authorisation(@ModelAttribute("authorisationUser")AuthorisationUser authorisationUser) {
         System.out.println(authorisationUser);
-
         if (this.userService.authorisationUser(authorisationUser)){
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.addObject("authorisationUser", authorisationUser);
@@ -98,7 +90,6 @@ public class MainController {
     public String showInfoDate(@ModelAttribute("authorisationUser") AuthorisationUser user, @ModelAttribute("informationData") Information information) {
 
         Map hashMapTegExpenses;
-        Map<String, Double> removeTag;
 
         hashMapTegExpenses = allEntityService.Mamdani(information.getFirstDate(), information.getSecondDate(), user.getUser_phone());
 
