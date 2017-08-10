@@ -16,9 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.Date;
 import java.util.Map;
 
-/**
- * Created by Ichanskiy on 2017-05-30.
- */
 @Service
 public class AllEntityServiceImpl implements AllEntityService {
 
@@ -38,7 +35,6 @@ public class AllEntityServiceImpl implements AllEntityService {
     @Transactional
     public void saveAllUserExpansesData(DTO dto, String idUser) {
 
-
         int id = placePointDao.savePlacePoint(dto.getPlacePoint());
         System.out.println("idPlacePoint = " + id);
 
@@ -56,14 +52,12 @@ public class AllEntityServiceImpl implements AllEntityService {
         tag.setTagNameParent(dto.getTag().getTagNameParent());
         System.out.println("tag = " + tag);
         tagDao.saveTag(tag);
-
     }
 
     @Override
     public Map Mamdani(Date first, Date second, String phone) {
         return null;
     }
-
 
     @Override
     @Transactional

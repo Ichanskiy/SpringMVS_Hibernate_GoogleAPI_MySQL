@@ -6,6 +6,7 @@ import com.entity.User;
 /**
  * Created by Ichanskiy on 2017-05-26.
  */
+
 public interface UserService<T> {
 
     boolean registrationUser(T t);

@@ -5,10 +5,9 @@ import com.entity.Tag;
 import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
-/**
- * Created by Ichanskiy on 2017-05-30.
- */
+@Repository
 public class TagDaoImpl extends GenericDao implements TagDao {
 
     private static final Logger log = LoggerFactory.getLogger(UserDaoImpl.class);

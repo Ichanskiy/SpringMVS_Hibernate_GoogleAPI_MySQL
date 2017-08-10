@@ -8,13 +8,12 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
 import java.util.*;
 
-/**
- * Created by Ichanskiy on 2017-05-30.
- */
+@Repository
 public class UserExpensesDaoImpl extends GenericDao implements UserExpensesDao {
 
     private static final Logger log = LoggerFactory.getLogger(UserDaoImpl.class);
@@ -40,7 +39,6 @@ public class UserExpensesDaoImpl extends GenericDao implements UserExpensesDao {
 //                .add(Projections.sum("ue.userexperses_count")));
     return criteria.list();
     }
-
 
     @Override
     public boolean getUserExpensesById(int id) {

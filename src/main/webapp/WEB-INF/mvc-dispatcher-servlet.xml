@@ -29,8 +29,8 @@
     </bean>
 
     <!-- Hibernate 4 SessionFactory Bean definition -->
-    <bean id="hibernate5AnnotatedSessionFactory"
-          class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+    <bean id="hibernate4AnnotatedSessionFactory"
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan">
             <list>
@@ -46,9 +46,9 @@
         </property>
     </bean>
 
-    <bean id="genericDao" class="com.dao.implementation.GenericDao">
-        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
-    </bean>
+    <!--<bean id="genericDao" class="com.dao.implementation.GenericDao">-->
+        <!--<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>-->
+    <!--</bean>-->
 
     <!--<bean id="userDao" class="com.dao.implementation.UserDaoImpl">-->
         <!--<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>-->
@@ -72,7 +72,7 @@
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
     </bean>
 
     <mvc:default-servlet-handler/>
