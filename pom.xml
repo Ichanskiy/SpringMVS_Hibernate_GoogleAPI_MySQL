@@ -14,7 +14,8 @@
     <org.springframework-version>4.3.10.RELEASE</org.springframework-version>
     <org.aspectj-version>1.7.4</org.aspectj-version>
     <org.slf4j-version>1.7.5</org.slf4j-version>
-    <hibernate.version>4.3.5.Final</hibernate.version>
+    <hibernate.version>5.2.10.Final</hibernate.version>
+    <hibernat.validator.version>6.0.0.Final</hibernat.validator.version>
   </properties>
 
 
@@ -65,7 +66,11 @@
       <artifactId>hibernate-entitymanager</artifactId>
       <version>${hibernate.version}</version>
     </dependency>
-
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>${hibernat.validator.version}</version>
+    </dependency>
     <!-- Apache Commons DBCP -->
     <dependency>
       <groupId>commons-dbcp</groupId>

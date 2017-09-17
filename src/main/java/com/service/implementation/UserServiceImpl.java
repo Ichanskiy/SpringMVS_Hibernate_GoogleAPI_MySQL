@@ -38,6 +38,6 @@ public class UserServiceImpl implements UserService<User> {
 
     @Override
     public User getUserById(String id ) {
-        return null;
+        return userDao.getUserById(id);
     }
 }

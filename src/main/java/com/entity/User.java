@@ -19,17 +19,22 @@ import java.util.Set;
 @ToString
 public class User {
 
+    public static final String USER_PHONE = "user_phone";
+    public static final String USER_NAME = "user_name";
+    public static final String USER_EMAIL = "user_email";
+    public static final String USER_BIRTHDAY = "user_birthdate";
+
     @Id
-    @Column(name = "user_phone")
+    @Column(name = USER_PHONE)
     private String user_phone;
 
-    @Column(name = "user_name")
+    @Column(name = USER_NAME)
     private String user_name;
 
-    @Column(name = "user_email")
+    @Column(name = USER_EMAIL)
     private String user_email;
 
-    @Column(name = "user_birthdate")
+    @Column(name = USER_BIRTHDAY)
     private Date user_birthday;
 
 

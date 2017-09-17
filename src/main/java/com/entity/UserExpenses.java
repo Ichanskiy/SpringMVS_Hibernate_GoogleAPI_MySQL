@@ -18,19 +18,24 @@ import java.util.Set;
 @NoArgsConstructor
 @ToString(exclude = {"user","placePointSet","placePointSet"})
 public class UserExpenses {
-    
+
+    public static final String USER_EXPENSES_ID = "userexpenses_id";
+    public static final String USER_EXPENSES_COUNT = "userexperses_count";
+    public static final String USER_EXPENSES_DATE = "userexperses_date";
+    private static final String USER_PHONE_FK = "user_phone_fk";
+
     @Id
-    @Column(name = "userexpenses_id")
+    @Column(name = USER_EXPENSES_ID)
     private int userExpensesId;
 
-    @Column(name = "userexperses_count")
+    @Column(name = USER_EXPENSES_COUNT)
     private double userExpensesCount;
 
-    @Column(name = "userexperses_date")
+    @Column(name = USER_EXPENSES_DATE)
     private Date userExpensesDate;
 
     @ManyToOne//(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_phone_fk", nullable = false)
+    @JoinColumn(name = USER_PHONE_FK, nullable = false)
     private User user;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "userExpenses",cascade = CascadeType.ALL)

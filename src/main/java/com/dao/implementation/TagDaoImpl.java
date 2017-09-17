@@ -20,8 +20,7 @@ public class TagDaoImpl extends GenericDao implements TagDao {
             session.save(tag);
             log.info("tag successfully saved. Details: " + tag);
         } else {
-            log.info("tag successfully saved. Details: " + tag);
-            System.out.println("tag not save");
+            log.info("Tag isn`t new - it don`t save. Detail: " + tag);
         }
     }
 

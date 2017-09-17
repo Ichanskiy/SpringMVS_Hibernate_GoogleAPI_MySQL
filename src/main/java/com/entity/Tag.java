@@ -17,14 +17,18 @@ import java.util.Set;
 @ToString(exclude = "userExpenses")
 public class Tag {
 
+    public static final String TAG_NAME = "tag_name";
+    public static final String TAG_NAME_PARENT_FK = "tag_name_parent_fk";
+    public static final String TAG_DISCRIPTON = "tag_discription";
+
     @Id
-    @Column(name = "tag_name")
+    @Column(name = TAG_NAME)
     private String tagName;
 
-    @Column(name = "tag_name_parent_fk")
+    @Column(name = TAG_NAME_PARENT_FK)
     private String tagNameParent;
 
-    @Column(name = "tag_discription")
+    @Column(name = TAG_DISCRIPTON)
     private String tagDiscripton;
 
 

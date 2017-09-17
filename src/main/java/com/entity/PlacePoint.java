@@ -16,22 +16,28 @@ import javax.persistence.*;
 @ToString
 public class PlacePoint {
 
+    public static final String PLACEPOINT_ID = "placepoint_id";
+    public static final String PLACEPOINT_LONGITUDE = "placepoint_long";
+    public static final String PLACEPOINT_LATITUDE = "placepoint_lat";
+    public static final String PLACEPOINT_ADDRESS = "placepoint_address";
+    private static final String JOIN_PLACEPOINT_ID = "PLACEPOINT_ID";
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "placepoint_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = PLACEPOINT_ID)
     private int placePointId;
 
-    @Column(name = "placepoint_long")
+    @Column(name = PLACEPOINT_LONGITUDE)
     private double placePointLong;
 
-    @Column(name = "placepoint_lat")
+    @Column(name = PLACEPOINT_LATITUDE)
     private double placePointLat;
 
-    @Column(name = "placepoint_address")
+    @Column(name = PLACEPOINT_ADDRESS)
     private String placePointAddress;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PLACEPOINT_ID")
+    @JoinColumn(name = JOIN_PLACEPOINT_ID)
     private UserExpenses userExpenses;
 
 }

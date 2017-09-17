@@ -546,7 +546,7 @@
                     </div>
                 <br>
                 Розваги
-                    <form:input path="avocation" name="avocation" min="0" max="1" step="0.1" id="size"  value="0"/>
+                    <form:input path="avocation" type="range" name="avocation" min="0" max="1" step="0.1" id="size"  value="0"/>
                 <br>
                 Одяг
                      <form:input path="clothes" type="range" name="odyg_range" min="0" max="1" step="0.1" id="size"  value="0"/>

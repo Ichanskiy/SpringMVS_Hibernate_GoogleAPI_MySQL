@@ -50,7 +50,6 @@ public class AllEntityServiceImpl implements AllEntityService {
         tag.setTagDiscripton("disc");
         tag.setTagName(dto.getTag().getTagName());
         tag.setTagNameParent(dto.getTag().getTagNameParent());
-        System.out.println("tag = " + tag);
         tagDao.saveTag(tag);
     }
 
