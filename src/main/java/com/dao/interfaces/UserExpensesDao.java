@@ -2,7 +2,6 @@ package com.dao.interfaces;
 
 import com.entity.UserExpenses;
 
-import java.sql.Date;
 import java.util.*;
 
 /**

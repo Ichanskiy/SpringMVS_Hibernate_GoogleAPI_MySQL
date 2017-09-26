@@ -1,5 +1,6 @@
 package com.service.implementation;
 
+import com.dao.implementation.UserExpensesDaoImpl;
 import com.dao.interfaces.PlacePointDao;
 import com.dao.interfaces.TagDao;
 import com.dao.interfaces.UserDao;
@@ -13,8 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Date;
-import java.util.Map;
+//import java.sql.Date;
+import java.util.*;
 
 @Service
 public class AllEntityServiceImpl implements AllEntityService {
@@ -31,6 +32,9 @@ public class AllEntityServiceImpl implements AllEntityService {
     @Autowired
     private UserExpensesDao userExpensesDao;
 
+    @Autowired
+    private UserExpensesDaoImpl userExpensesDaoImpl;
+
     @Override
     @Transactional
     public void saveAllUserExpansesData(DTO dto, String idUser) {
@@ -39,9 +43,9 @@ public class AllEntityServiceImpl implements AllEntityService {
         System.out.println("idPlacePoint = " + id);
 
         UserExpenses userExpenses = new UserExpenses();
-        userExpenses.setUserExpensesCount(dto.getUserExpenses().getUserExpensesCount());
-        userExpenses.setUserExpensesDate(dto.getUserExpenses().getUserExpensesDate());
-        userExpenses.setUserExpensesId(id);
+        userExpenses.setUserexperses_count(dto.getUserExpenses().getUserexperses_count());
+        userExpenses.setUserexperses_date(dto.getUserExpenses().getUserexperses_date());
+        userExpenses.setUserexpenses_id(id);
         userExpenses.setUser(userDao.getUserById(idUser));
         userExpenses.setTag(dto.getTag());
         userExpensesDao.saveUserExpenses(userExpenses);
@@ -54,7 +58,10 @@ public class AllEntityServiceImpl implements AllEntityService {
     }
 
     @Override
-    public Map Mamdani(Date first, Date second, String phone) {
+    public Map Mamdani(Date firstDate, Date secondDate, String phone) {
+
+        List<UserExpenses> list = userExpensesDaoImpl.getExpensesForTag(firstDate, secondDate, phone);
+        System.out.println(list.size());
         return null;
     }
 

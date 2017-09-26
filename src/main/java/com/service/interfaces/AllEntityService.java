@@ -2,7 +2,8 @@ package com.service.interfaces;
 
 import com.dto.DTO;
 
-import java.sql.Date;
+//import java.sql.Date;
+import java.util.Date;
 import java.util.Map;
 
 /**

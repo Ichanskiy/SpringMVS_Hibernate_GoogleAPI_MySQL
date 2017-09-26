@@ -429,12 +429,12 @@
 
 
         <section id="content-tab1">
-            <c:url var="addAction" value="/expenses/add" />
-            <form:form action="${addAction}" commandName="dto">
+            <c:url var="addActions" value="/expenses/add" />
+            <form:form action="${addActions}" commandName="dto">
 
                 <div class="form-group">
                     <label for="date_name">Дата події</label>
-                    <form:input path="userExpenses.userExpensesDate" type="date" name="date_name" id="date_name" class="form-control" placeholder="Дата події" />
+                    <form:input path="userExpenses.userexperses_date" type="date" name="date_name" id="date_name" class="form-control" placeholder="Дата події" />
                 </div>
 
                 <div class="form-group">
@@ -454,7 +454,7 @@
 
                 <div class="form-group">
                     <label for="money">Кількість потрачених грошей</label>
-                    <form:input path="userExpenses.userExpensesCount" name="amount" type="number" class="form-control" id="money" value="0" min="1" max="40000" step="1" />
+                    <form:input path="userExpenses.userexperses_count" name="amount" type="number" class="form-control" id="money" value="0" min="1" max="40000" step="1" />
                 </div>
 
 
@@ -554,9 +554,11 @@
                 Їжа
                      <form:input path="food" type="range" name="eda_range" min="0" max="1" step="0.1" id="size"  value="0"/>
                 <br>
-                    <a href="" target="_blank">
-                        <button type="submit" class="btn btn-success">Переглянути</button>
-                    </a>
+                    <%--<a href="" target="_blank">--%>
+                        <%--<button type="submit" class="btn btn-success">Переглянути</button>--%>
+                    <%--</a>--%>
+                <button type="submit" class="btn btn-success" >Переглянути</button>
+
 
             </form:form>
         </section>

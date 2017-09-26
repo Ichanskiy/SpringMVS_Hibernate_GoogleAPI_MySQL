@@ -7,11 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import java.sql.Date;
-import java.util.*;
+import javax.persistence.criteria.*;
+import java.util.Date;
+import java.util.List;
 
 @Repository
 public class UserExpensesDaoImpl extends GenericDao implements UserExpensesDao {
@@ -25,12 +23,12 @@ public class UserExpensesDaoImpl extends GenericDao implements UserExpensesDao {
         log.info("userExpenses successfully saved. Details: " + userExpenses);
     }
 
-    @Override
     public List<UserExpenses> getExpensesForTag(Date firstDate, Date secondDate, String phone) {
         CriteriaBuilder builder = getSessionFactory().getCriteriaBuilder();
         CriteriaQuery<UserExpenses> query = builder.createQuery(UserExpenses.class);
         Root<UserExpenses> root = query.from(UserExpenses.class);
-        builder.between(root.get(UserExpenses.USER_EXPENSES_DATE).as(Date.class), firstDate, secondDate);
+        Predicate predicate = builder.between(root.<Date>get(UserExpenses.USEREXPERSES_DATE), firstDate, secondDate);
+        query.where(predicate);
         return getSessionFactory().createEntityManager().createQuery(query).getResultList();
 
 //        Session session = getSessionFactory().getCurrentSession();

@@ -86,12 +86,12 @@ public class MainController {
         return "redirect:/Expenses";
     }
 
-    @RequestMapping(value = "/expenses/dateInfo", method = RequestMethod.GET)
-    public String showInfoDate(@ModelAttribute("authorisationUser") AuthorisationUser user, @ModelAttribute("informationData") Information information) {
+    @RequestMapping(value = "/expenses/dateInfo", method = RequestMethod.POST)
+    public String showInfoDate(@ModelAttribute("authorisationUser") AuthorisationUser authorisationUser, @ModelAttribute("informationData") Information information) {
 
         Map hashMapTegExpenses;
-
-        hashMapTegExpenses = allEntityService.Mamdani(information.getFirstDate(), information.getSecondDate(), user.getUser_phone());
+        allEntityService.Mamdani(information.getFirstDate(), information.getSecondDate(), authorisationUser.getUser_phone());
+        hashMapTegExpenses = allEntityService.Mamdani(information.getFirstDate(), information.getSecondDate(), authorisationUser.getUser_phone());
 
         return "Result";
     }

@@ -19,20 +19,20 @@ import java.util.Set;
 @ToString(exclude = {"user","placePointSet","placePointSet"})
 public class UserExpenses {
 
-    public static final String USER_EXPENSES_ID = "userexpenses_id";
-    public static final String USER_EXPENSES_COUNT = "userexperses_count";
-    public static final String USER_EXPENSES_DATE = "userexperses_date";
+    public static final String USEREXPENSES_ID = "userexpenses_id";
+    public static final String USEREXPERSES_COUNT = "userexperses_count";
+    public static final String USEREXPERSES_DATE = "userexperses_date";
     private static final String USER_PHONE_FK = "user_phone_fk";
 
     @Id
-    @Column(name = USER_EXPENSES_ID)
-    private int userExpensesId;
+    @Column(name = USEREXPENSES_ID)
+    private int userexpenses_id;
 
-    @Column(name = USER_EXPENSES_COUNT)
-    private double userExpensesCount;
+    @Column(name = USEREXPERSES_COUNT)
+    private double userexperses_count;
 
-    @Column(name = USER_EXPENSES_DATE)
-    private Date userExpensesDate;
+    @Column(name = USEREXPERSES_DATE)
+    private Date userexperses_date;
 
     @ManyToOne//(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = USER_PHONE_FK, nullable = false)
@@ -57,9 +57,9 @@ public class UserExpenses {
     private Tag tag;
 
 
-    public UserExpenses(double userExpensesCount, Date userExpensesDate) {
-        this.userExpensesCount = userExpensesCount;
-        this.userExpensesDate = userExpensesDate;
+    public UserExpenses(double userExpensesCount, Date userexperses_date) {
+        this.userexperses_count = userExpensesCount;
+        this.userexperses_date = userexperses_date;
     }
 
     public UserExpenses(UserExpenses userExpenses) {
