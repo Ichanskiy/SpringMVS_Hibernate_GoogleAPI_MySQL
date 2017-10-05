@@ -9,6 +9,8 @@ import com.dto.DTO;
 import com.entity.Tag;
 import com.entity.User;
 import com.entity.UserExpenses;
+import com.entity.subsidary.Information;
+import com.entity.subsidary.Result;
 import com.service.interfaces.AllEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 //import java.sql.Date;
 import java.util.*;
+
+import static com.Math.Mamdani.Mamdani.getCountEconomy;
+import static com.Math.Mamdani.Mamdani.getEconomy;
+import static com.Math.Mamdani.Mamdani.getPersent;
 
 @Service
 public class AllEntityServiceImpl implements AllEntityService {
@@ -58,11 +64,30 @@ public class AllEntityServiceImpl implements AllEntityService {
     }
 
     @Override
-    public Map Mamdani(Date firstDate, Date secondDate, String phone) {
-
+    public Result Mamdani(Date firstDate, Date secondDate, String phone, double avocation, double clothes, double food) {
+        double allSum = 0;
+        Map<String, Double> mapExpanses = new HashMap<String, Double>();
+        Map<String, Double> resultMap;
+        UserExpenses userExpenses;
         List<UserExpenses> list = userExpensesDaoImpl.getExpensesForTag(firstDate, secondDate, phone);
-        System.out.println(list.size());
-        return null;
+        if (!list.isEmpty()) {
+            for (UserExpenses aList : list) {
+                userExpenses = aList;
+                String name = userExpenses.getTag().getTagName();
+                allSum = allSum + userExpenses.getUserexperses_count();
+                double count = userExpenses.getUserexperses_count();
+                if (mapExpanses.get(name) == null) {
+                    mapExpanses.put(name, count);
+                } else {
+                    double countTmp = mapExpanses.get(name);
+                    mapExpanses.put(name, countTmp + count);
+                }
+            }
+        }
+        resultMap = getEconomy(mapExpanses, clothes, avocation, food);
+        double sum = getCountEconomy(resultMap);
+        double persent = getPersent(allSum, sum);
+        return new Result(sum, persent, resultMap);
     }
 
     @Override

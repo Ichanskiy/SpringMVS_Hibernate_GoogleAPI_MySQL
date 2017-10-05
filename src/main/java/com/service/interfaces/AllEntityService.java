@@ -1,6 +1,8 @@
 package com.service.interfaces;
 
 import com.dto.DTO;
+import com.entity.subsidary.Information;
+import com.entity.subsidary.Result;
 
 //import java.sql.Date;
 import java.util.Date;
@@ -11,6 +13,6 @@ import java.util.Map;
  */
 public interface AllEntityService {
     void saveAllUserExpansesData(DTO dto, String idUser);
-    Map Mamdani(Date first, Date second, String phone);
+    Result Mamdani(Date first, Date second, String phone, double avocation, double clothes, double food);
     void getExpansesForDate (Date first, Date second);
 }

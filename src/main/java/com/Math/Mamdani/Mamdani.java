@@ -2,7 +2,6 @@ package com.Math.Mamdani;
 
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,11 +32,8 @@ public class Mamdani {
         mapImpotence.put("Атракціони", 0.4 * rosvagy_range_double);
         mapImpotence.put("Кінотеатр", 0.45 * rosvagy_range_double);
 
-
-
         Map<String, Double> finalMap = new HashMap<String,Double>();
         Map<String, Double> outputMap = new HashMap<String,Double>();
-
 
         //перетин вхіхдних витрат і існуючих правил
         for (Map.Entry entry : inputMap.entrySet()) {
@@ -52,7 +48,6 @@ public class Mamdani {
         }
 
         String key = getKeyMinMapElement(finalMap);
-       // System.out.println(key);
         if (finalMap.size() <= 2){
             System.out.println("<2");
         }else {
@@ -95,8 +90,16 @@ public class Mamdani {
         return findKey;
     }
 
-    public static int getCountEconomy(List<String> removeTag){
-        return 0;
+    public static double getCountEconomy(Map<String, Double> inputMap){
+        double count = 0.0;
+        for (Map.Entry entry : inputMap.entrySet()) {
+            Double d = (Double) entry.getValue();
+            count = d + count;
+        }
+        return count;
     }
 
+    public static double getPersent(double allSum, double sum){
+        return Math.round((sum / allSum) * 100);
+    }
 }

@@ -458,8 +458,8 @@
 
 
         <section id="content-tab1">
-            <c:url var="addAction3" value="/expenses/possibility/dateInfo"/>
-            <form:form action="${addAction3}">
+            <c:url var="addActions3" value="/expenses/possibility/dateInfo"/>
+            <form:form action="${addActions3}">
                 <b>Період витрат:</b>
                 <p></p>
                 <div class="form-group" style="display: inline-block;">
@@ -483,10 +483,17 @@
                 <br>
                 <b>Рекомендації, як можна можна зекономити:</b>
                 <br><br>
-                <c:if test="${!empty percent}">
-                    <b>Економити на:                 </b><i>${all_tag_str}</i><br><br>
-                    <b>Сума зекономлених кошт: </b><i>${sum}</i><br><br>
-                    <b>Відсоток економії від витрат: </b><i>${percent}</i><br><br><br>
+                <c:if test="${!empty result}">
+                    <b>Економити на:
+                    </b>
+                    <i>
+                        <c:forEach items="${result.removeTag}" var="entry">
+                            Витрати: ${entry.key}, кошти: = ${entry.value}<br>
+                        </c:forEach>
+                    </i>
+                    <br><br>
+                    <b>Сума зекономлених кошт: </b><i>${result.sum}</i><br><br>
+                    <b>Відсоток економії від витрат: </b><i>${result.percent}</i><br><br><br>
                 </c:if>
                 <c:if test="${!empty pointList}">
                     <div class="form-group" id="listadrdiv" >
@@ -505,7 +512,7 @@
             </form:form>
         </section>
         <section id="content-tab2">
-            <a href="<c:url value="/expenses"/>" ><button type="button" class="btn btn-success">Перейти до додавання витрат</button></a>
+            <a href="<c:url value="/Expenses"/>" ><button type="button" class="btn btn-success">Перейти до додавання витрат</button></a>
         </section>
     </div>
 

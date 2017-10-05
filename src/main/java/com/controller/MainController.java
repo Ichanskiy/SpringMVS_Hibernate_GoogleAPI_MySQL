@@ -5,6 +5,7 @@ import com.dto.DTO;
 import com.entity.subsidary.AuthorisationUser;
 import com.entity.User;
 import com.entity.subsidary.Information;
+import com.entity.subsidary.Result;
 import com.service.interfaces.AllEntityService;
 import com.service.interfaces.UserService;
 import org.slf4j.Logger;
@@ -18,8 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.Map;
 
 @Controller
 @SessionAttributes("authorisationUser")
@@ -73,7 +72,6 @@ public class MainController {
 
     @RequestMapping(value = "Expenses", method = RequestMethod.GET)
     public String showExpansesPage(@ModelAttribute("authorisationUser") AuthorisationUser AuthorisationUser, Model model) {
-        System.out.println("AuthorisationUser = " + AuthorisationUser);
         model.addAttribute("dto", new DTO());
         model.addAttribute("informationData", new Information());
         return "Expenses";
@@ -81,18 +79,25 @@ public class MainController {
 
     @RequestMapping(value = "/expenses/add", method = RequestMethod.POST)
     public String addExpanses(@ModelAttribute("dto") DTO dto, @ModelAttribute ("authorisationUser") AuthorisationUser authorisationUser) {
-        System.out.println(dto);
         allEntityService.saveAllUserExpansesData(dto, authorisationUser.getUser_phone());
         return "redirect:/Expenses";
     }
 
     @RequestMapping(value = "/expenses/dateInfo", method = RequestMethod.POST)
-    public String showInfoDate(@ModelAttribute("authorisationUser") AuthorisationUser authorisationUser, @ModelAttribute("informationData") Information information) {
+    public String showInfoDate(@ModelAttribute("authorisationUser") AuthorisationUser authorisationUser, @ModelAttribute("informationData") Information information,  Model model) {
 
-        Map hashMapTegExpenses;
-        allEntityService.Mamdani(information.getFirstDate(), information.getSecondDate(), authorisationUser.getUser_phone());
-        hashMapTegExpenses = allEntityService.Mamdani(information.getFirstDate(), information.getSecondDate(), authorisationUser.getUser_phone());
+        Result result = allEntityService
+                .Mamdani(information.getFirstDate(), information.getSecondDate(), authorisationUser.getUser_phone(),
+                        information.getAvocation(), information.getClothes(), information.getFood());
+        model.addAttribute("result", result);
+        return "Result";
+    }
 
+    @RequestMapping(value = "/expenses/possibility/dateInfo", method = RequestMethod.GET)
+    public String showResult(@ModelAttribute("authorisationUser") AuthorisationUser authorisationUser, @ModelAttribute("result") Result result, ModelAndView modelAndView, Model model) {
+        String result1 = modelAndView.getViewName();
+        System.out.println(result);
+        model.addAttribute("result", result);
         return "Result";
     }
 }

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Date;
+import java.util.Map;
 
 /**
  * Created by Ichanskiy on 2017-06-23.
@@ -15,9 +16,8 @@ public class Information {
 
     private Date firstDate;
     private Date secondDate;
-    private int avocation;
-    private int clothes;
-    private int food;
-
+    private double avocation;
+    private double clothes;
+    private double food;
 
 }
