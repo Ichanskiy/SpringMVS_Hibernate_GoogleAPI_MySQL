@@ -6,22 +6,19 @@ import com.dao.interfaces.TagDao;
 import com.dao.interfaces.UserDao;
 import com.dao.interfaces.UserExpensesDao;
 import com.dto.DTO;
+import com.entity.PlacePoint;
 import com.entity.Tag;
 import com.entity.User;
 import com.entity.UserExpenses;
-import com.entity.subsidary.Information;
 import com.entity.subsidary.Result;
 import com.service.interfaces.AllEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-//import java.sql.Date;
 import java.util.*;
 
-import static com.Math.Mamdani.Mamdani.getCountEconomy;
-import static com.Math.Mamdani.Mamdani.getEconomy;
-import static com.Math.Mamdani.Mamdani.getPersent;
+import static com.Math.Mamdani.Mamdani.*;
 
 @Service
 public class AllEntityServiceImpl implements AllEntityService {
@@ -33,7 +30,7 @@ public class AllEntityServiceImpl implements AllEntityService {
     private TagDao tagDao;
 
     @Autowired
-    UserDao<User> userDao;
+    private UserDao<User> userDao;
 
     @Autowired
     private UserExpensesDao userExpensesDao;
@@ -64,6 +61,18 @@ public class AllEntityServiceImpl implements AllEntityService {
     }
 
     @Override
+    @Transactional
+    public List<String> getAddressListById(List ids) {
+        PlacePoint placePoint;
+        List<String> resultList = new ArrayList<String>();
+        for (Object id : ids) {
+            placePoint = placePointDao.getAddressById((Integer) id);
+            resultList.add(placePoint.getPlacePointAddress());
+        }
+        return resultList;
+    }
+
+    @Override
     public Result Mamdani(Date firstDate, Date secondDate, String phone, double avocation, double clothes, double food) {
         double allSum = 0;
         Map<String, Double> mapExpanses = new HashMap<String, Double>();
@@ -86,13 +95,21 @@ public class AllEntityServiceImpl implements AllEntityService {
         }
         resultMap = getEconomy(mapExpanses, clothes, avocation, food);
         double sum = getCountEconomy(resultMap);
-        double persent = getPersent(allSum, sum);
-        return new Result(sum, persent, resultMap);
+        double percent = getPercent(allSum, sum);
+        return new Result(sum, percent, resultMap, null);
     }
 
-    @Override
-    @Transactional
-    public void getExpansesForDate(Date first, Date second) {
-
+    public List<String> route(Date firstDate, Date secondDate, String phone) {
+        List<Integer> ids = new ArrayList<Integer>();
+        UserExpenses userExpenses;
+        List<UserExpenses> list = userExpensesDaoImpl.getExpensesForTag(firstDate, secondDate, phone);
+        if (!list.isEmpty()) {
+            for (UserExpenses aList : list) {
+                userExpenses = aList;
+                ids.add(userExpenses.getUserexpenses_id());
+            }
+        }
+        return getAddressListById(ids);
     }
+
 }

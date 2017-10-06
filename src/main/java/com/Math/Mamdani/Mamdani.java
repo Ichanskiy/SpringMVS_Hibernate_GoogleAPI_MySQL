@@ -99,7 +99,7 @@ public class Mamdani {
         return count;
     }
 
-    public static double getPersent(double allSum, double sum){
+    public static double getPercent(double allSum, double sum){
         return Math.round((sum / allSum) * 100);
     }
 }

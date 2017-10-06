@@ -9,10 +9,13 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.Date;
+import java.util.List;
 
 @Repository
-public class PlacePointImpl extends GenericDao implements PlacePointDao {
+public class PlacePointDaoImpl extends GenericDao implements PlacePointDao {
 
     private static final Logger log = LoggerFactory.getLogger(UserDaoImpl.class);
 
@@ -51,5 +54,15 @@ public class PlacePointImpl extends GenericDao implements PlacePointDao {
         if (placePoint  == null) {
             return  true;
         }else return false;
+    }
+
+    @Override
+    public PlacePoint getAddressById(int id) {
+        CriteriaBuilder builder = getSessionFactory().getCriteriaBuilder();
+        CriteriaQuery<PlacePoint> query = builder.createQuery(PlacePoint.class);
+        Root<PlacePoint> root = query.from(PlacePoint.class);
+        Predicate predicate = builder.equal(root.get(PlacePoint.PLACEPOINT_ID), id);
+        query.where(predicate);
+        return getSessionFactory().createEntityManager().createQuery(query).getSingleResult();
     }
 }
