@@ -24,7 +24,7 @@ public class PlacePointDaoImpl extends GenericDao implements PlacePointDao {
         Session session = getSessionFactory().getCurrentSession();
         session.saveOrUpdate(placePoint);
         log.info("placePoint successfully saved. Details: " + placePoint);
-        return placePoint.getPlacePointId();
+        return placePoint.getPlacepoint_id();
     }
 
     @Override

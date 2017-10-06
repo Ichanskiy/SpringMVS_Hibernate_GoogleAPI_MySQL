@@ -495,10 +495,10 @@
                     <b>Сума зекономлених кошт: </b><i>${result.sum}</i><br><br>
                     <b>Відсоток економії від витрат: </b><i>${result.percent}</i><br><br><br>
                 </c:if>
-                <c:if test="${!empty pointList}">
+                <c:if test="${!empty result.pointList}">
                     <div class="form-group" id="listadrdiv" >
                         <code id="listadr" >
-                            <c:forEach items="${pointList}" var="pointList">
+                            <c:forEach items="${result.pointList}" var="pointList">
                             ${pointList};
                             </c:forEach>
                         </code>

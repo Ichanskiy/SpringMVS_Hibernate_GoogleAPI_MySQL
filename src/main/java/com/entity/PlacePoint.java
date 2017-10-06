@@ -25,7 +25,7 @@ public class PlacePoint {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = PLACEPOINT_ID)
-    private int placePointId;
+    private int placepoint_id;
 
     @Column(name = PLACEPOINT_LONGITUDE)
     private double placePointLong;
