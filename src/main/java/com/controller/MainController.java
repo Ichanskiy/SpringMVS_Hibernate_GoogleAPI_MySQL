@@ -34,7 +34,6 @@ public class MainController {
 
     @RequestMapping(value = "/LogIn", method = RequestMethod.GET)
     public String showLogInPage(Model model){
-        System.out.println("1");
         model.addAttribute("authorisationUser", new AuthorisationUser());
         return "LogIn";
     }

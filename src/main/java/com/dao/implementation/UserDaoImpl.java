@@ -31,11 +31,11 @@ public class UserDaoImpl extends GenericDao implements UserDao<User> {
         CriteriaQuery<User> query = builder.createQuery(User.class);
         Root<User> root = query.from(User.class);
         query.where(builder.equal(root.get(User.USER_PHONE), phone));
-        User user = getSessionFactory().createEntityManager().createQuery(query).getSingleResult();
-        if(user.getUser_phone() != null)
-            return false;
-        else
+        Long count = getCountFromQuery(query);
+        if(count == null)
             return true;
+        else
+            return false;
 //        Session session = getSessionFactory().getCurrentSession();
 //        System.out.println(phone);
 //        Criteria criteria = session.createCriteria(User.class);
