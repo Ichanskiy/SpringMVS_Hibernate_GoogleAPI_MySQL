@@ -30,18 +30,6 @@ public class UserExpensesDaoImpl extends GenericDao implements UserExpensesDao {
         Predicate predicate = builder.between(root.<Date>get(UserExpenses.USEREXPERSES_DATE), firstDate, secondDate);
         query.where(predicate);
         return getSessionFactory().createEntityManager().createQuery(query).getResultList();
-
-//        Session session = getSessionFactory().getCurrentSession();
-//        Criteria criteria = session.createCriteria(UserExpenses.class, "ue").setCacheable(false);
-//        criteria.createAlias("ue.user","u");
-//        criteria.createAlias("ue.tag","t");
-//        criteria.add(Restrictions.eq("u.user_phone", phone));
-//        criteria.add(Restrictions.between("userexperses_date", firstDate, secondDate));
-//        criteria.setProjection(Projections.projectionList()
-////                .add(Projections.groupProperty("t.tag_name")));
-//                .add(Projections.groupProperty("ue.tag")));
-////                .add(Projections.sum("ue.userexperses_count")));
-
     }
 
     @Override

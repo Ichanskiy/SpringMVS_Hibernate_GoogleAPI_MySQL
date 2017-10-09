@@ -36,13 +36,6 @@ public class PlacePointDaoImpl extends GenericDao implements PlacePointDao {
         query.where(builder.equal(root.get(PlacePoint.PLACEPOINT_ADDRESS), address));
         long count =  getSessionFactory().createEntityManager().createQuery(query).getSingleResult();
         return count > 1;
-//        Session session = getSessionFactory().getCurrentSession();
-//        System.out.println(address);
-//        PlacePoint placePoint = (PlacePoint) session.get(PlacePoint.class, address);
-//        System.out.println(placePoint);
-//        if (placePoint  == null) {
-//            return  true;
-//        }else return false;
     }
 
     @Override

@@ -36,14 +36,6 @@ public class UserDaoImpl extends GenericDao implements UserDao<User> {
             return true;
         else
             return false;
-//        Session session = getSessionFactory().getCurrentSession();
-//        System.out.println(phone);
-//        Criteria criteria = session.createCriteria(User.class);
-//        criteria.add(Restrictions.eq("user_phone", phone));
-//        if (criteria.uniqueResult() != null)
-//            return false;
-//        else
-//            return true;
     }
 
     @Override
@@ -55,19 +47,6 @@ public class UserDaoImpl extends GenericDao implements UserDao<User> {
         Predicate predicate2 = builder.and(builder.equal(root.get(User.USER_EMAIL), authorisationUser.getUser_email()));
         query.where(predicate1, predicate2);
         return !getSessionFactory().createEntityManager().createQuery(query).getResultList().isEmpty();
-
-//        Session session = getSessionFactory().getCurrentSession();
-//        Criteria criteria = session.createCriteria(User.class);
-//        criteria.add(Restrictions.eq("user_phone", authorisationUser.getUser_phone()));
-//        criteria.add(Restrictions.eq("user_email", authorisationUser.getUser_email()));
-//        return !criteria.list().isEmpty();
-
-//        Query query = session.createQuery("from User as user where user.user_email = ? and user_phone = ?");
-//        query.setString(0, authorisationUser.getUser_email());
-//        query.setString(1, authorisationUser.getUser_phone());
-//        List userList = query.list();
-//        System.out.println("if user exist --> return true");
-//        return !userList.isEmpty();
     }
 
     @Override
@@ -77,7 +56,5 @@ public class UserDaoImpl extends GenericDao implements UserDao<User> {
         Root<User> root = query.from(User.class);
         query.where(builder.equal(root.get(User.USER_PHONE), id));
         return getSessionFactory().createEntityManager().createQuery(query).getSingleResult();
-//        Session session = getSessionFactory().getCurrentSession();
-//        return (User) session.get(User.class, id);
     }
 }

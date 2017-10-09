@@ -95,7 +95,6 @@ public class MainController {
 
     @RequestMapping(value = "/expenses/possibility/dateInfo", method = RequestMethod.GET)
     public String showResult(@ModelAttribute("authorisationUser") AuthorisationUser authorisationUser, @ModelAttribute("result") Result result, ModelAndView modelAndView, Model model) {
-        String result1 = modelAndView.getViewName();
         System.out.println(result);
         model.addAttribute("result", result);
         return "Result";
