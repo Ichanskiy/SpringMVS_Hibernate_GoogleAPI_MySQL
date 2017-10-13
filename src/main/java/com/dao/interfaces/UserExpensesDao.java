@@ -10,6 +10,7 @@ import java.util.*;
 public interface UserExpensesDao {
 
     void saveUserExpenses(UserExpenses userExpenses);
-    List getExpensesForTag(Date first, Date second, String phone);
-    boolean getUserExpensesById(int id);
+    List getUserExpensesForTag(Date first, Date second, String phone);
+    List<UserExpenses> getUserExpensesById(int id);
+    List<UserExpenses> getUserExpensesAll();
 }

@@ -78,7 +78,7 @@ public class AllEntityServiceImpl implements AllEntityService {
         Map<String, Double> mapExpanses = new HashMap<String, Double>();
         Map<String, Double> resultMap;
         UserExpenses userExpenses;
-        List<UserExpenses> list = userExpensesDaoImpl.getExpensesForTag(firstDate, secondDate, phone);
+        List<UserExpenses> list = userExpensesDaoImpl.getUserExpensesForTag(firstDate, secondDate, phone);
         if (!list.isEmpty()) {
             for (UserExpenses aList : list) {
                 userExpenses = aList;
@@ -96,13 +96,13 @@ public class AllEntityServiceImpl implements AllEntityService {
         resultMap = getEconomy(mapExpanses, clothes, avocation, food);
         double sum = getCountEconomy(resultMap);
         double percent = getPercent(allSum, sum);
-        return new Result(sum, percent, resultMap, null);
+        return new Result(sum, percent, resultMap, null, null);
     }
 
     public List<String> route(Date firstDate, Date secondDate, String phone) {
         List<Integer> ids = new ArrayList<Integer>();
         UserExpenses userExpenses;
-        List<UserExpenses> list = userExpensesDaoImpl.getExpensesForTag(firstDate, secondDate, phone);
+        List<UserExpenses> list = userExpensesDaoImpl.getUserExpensesForTag(firstDate, secondDate, phone);
         if (!list.isEmpty()) {
             for (UserExpenses aList : list) {
                 userExpenses = aList;
@@ -110,6 +110,11 @@ public class AllEntityServiceImpl implements AllEntityService {
             }
         }
         return getAddressListById(ids);
+    }
+
+    @Override
+    public List<UserExpenses> getUserExpenses(String phone) {
+        return userExpensesDao.getUserExpensesAll();
     }
 
 }

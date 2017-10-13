@@ -22,7 +22,7 @@ public class UserExpenses {
     public static final String USEREXPENSES_ID = "userexpenses_id";
     public static final String USEREXPERSES_COUNT = "userexperses_count";
     public static final String USEREXPERSES_DATE = "userexperses_date";
-    private static final String USER_PHONE_FK = "user_phone_fk";
+    public static final String USER_PHONE_FK = "user_phone_fk";
 
     @Id
     @Column(name = USEREXPENSES_ID)

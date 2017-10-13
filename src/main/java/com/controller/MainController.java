@@ -2,6 +2,7 @@ package com.controller;
 
 
 import com.dto.DTO;
+import com.entity.UserExpenses;
 import com.entity.subsidary.AuthorisationUser;
 import com.entity.User;
 import com.entity.subsidary.Information;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
 
 @Controller
 @SessionAttributes("authorisationUser")
@@ -93,10 +96,10 @@ public class MainController {
         return "Result";
     }
 
-    @RequestMapping(value = "/expenses/possibility/dateInfo", method = RequestMethod.GET)
-    public String showResult(@ModelAttribute("authorisationUser") AuthorisationUser authorisationUser, @ModelAttribute("result") Result result, ModelAndView modelAndView, Model model) {
-        System.out.println(result);
-        model.addAttribute("result", result);
-        return "Result";
+    @RequestMapping(value = "/expenses/user", method = RequestMethod.GET)
+    public String showResultUserExpanses(@ModelAttribute("authorisationUser") AuthorisationUser authorisationUser, Model model) {
+        model.addAttribute("expanses", new UserExpenses());
+        model.addAttribute("listExpanses", this.allEntityService.getUserExpenses(authorisationUser.getUser_phone()));
+        return "EditExpenses";
     }
 }

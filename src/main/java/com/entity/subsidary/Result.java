@@ -1,5 +1,6 @@
 package com.entity.subsidary;
 
+import com.entity.UserExpenses;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ public class Result {
     private double sum;
     private double percent;
     private Map<String, Double> removeTag;
-    private List<String> pointList = new ArrayList<String>();
+    private List pointList = new ArrayList();
+    private List<UserExpenses> userExpensesList;
 
 }

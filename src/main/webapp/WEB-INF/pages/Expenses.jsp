@@ -558,6 +558,7 @@
                         <%--<button type="submit" class="btn btn-success">Переглянути</button>--%>
                     <%--</a>--%>
                 <button type="submit" class="btn btn-success" >Переглянути</button>
+                <a href="<c:url value="/expenses/user"/>" ><button type="button" class="btn btn-success">Редагувати</button></a>
 
 
             </form:form>
