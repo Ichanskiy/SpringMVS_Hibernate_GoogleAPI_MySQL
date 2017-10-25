@@ -2,15 +2,13 @@ package com.dao.implementation;
 
 import com.dao.interfaces.TagDao;
 import com.entity.Tag;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@Slf4j
 public class TagDaoImpl extends GenericDao implements TagDao {
-
-    private static final Logger log = LoggerFactory.getLogger(UserDaoImpl.class);
 
     @Override
     public void saveTag(Tag tag) {

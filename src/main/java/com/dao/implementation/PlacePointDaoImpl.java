@@ -2,9 +2,8 @@ package com.dao.implementation;
 
 import com.dao.interfaces.PlacePointDao;
 import com.entity.PlacePoint;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -15,9 +14,8 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
+@Slf4j
 public class PlacePointDaoImpl extends GenericDao implements PlacePointDao {
-
-    private static final Logger log = LoggerFactory.getLogger(UserDaoImpl.class);
 
     @Override
     public int savePlacePoint(PlacePoint placePoint) {

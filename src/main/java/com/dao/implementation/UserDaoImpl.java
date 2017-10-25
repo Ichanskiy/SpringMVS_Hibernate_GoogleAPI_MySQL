@@ -3,9 +3,8 @@ package com.dao.implementation;
 import com.dao.interfaces.UserDao;
 import com.entity.subsidary.AuthorisationUser;
 import com.entity.User;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -14,9 +13,8 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 @Repository
+@Slf4j
 public class UserDaoImpl extends GenericDao implements UserDao<User> {
-
-    private static final Logger log = LoggerFactory.getLogger(UserDaoImpl.class);
 
     @Override
     public void saveUser(User user) {

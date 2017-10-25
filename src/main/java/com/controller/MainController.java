@@ -2,13 +2,13 @@ package com.controller;
 
 
 import com.dto.DTO;
-import com.entity.UserExpenses;
 import com.entity.subsidary.AuthorisationUser;
 import com.entity.User;
 import com.entity.subsidary.Information;
 import com.entity.subsidary.Result;
 import com.service.interfaces.AllEntityService;
 import com.service.interfaces.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,13 +21,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-
 @Controller
 @SessionAttributes("authorisationUser")
+@Slf4j
 public class MainController {
-
-    private static final Logger log = LoggerFactory.getLogger(MainController.class);
 
     @Autowired
     private UserService<User> userService;
@@ -53,6 +50,7 @@ public class MainController {
         if (this.userService.authorisationUser(authorisationUser)){
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.addObject("authorisationUser", authorisationUser);
+            log.info("user %s authorisation", authorisationUser.getUser_phone());
             return "redirect:/Expenses";
         } else {
             return "Error";
@@ -63,8 +61,8 @@ public class MainController {
     public String registration(@ModelAttribute("user") User user) {
 
         System.out.println(user);
-        log.info("user = " + user);
         if (this.userService.registrationUser(user)) {
+            log.info("user %s successfully registered", user.getUser_phone());
             System.out.println("successfully");
             return "redirect:/LogIn";
         } else {
@@ -82,6 +80,7 @@ public class MainController {
     @RequestMapping(value = "/expenses/add", method = RequestMethod.POST)
     public String addExpanses(@ModelAttribute("dto") DTO dto, @ModelAttribute ("authorisationUser") AuthorisationUser authorisationUser) {
         allEntityService.saveAllUserExpansesData(dto, authorisationUser.getUser_phone());
+        log.info("add user expanses");
         return "redirect:/Expenses";
     }
 
@@ -93,13 +92,15 @@ public class MainController {
                         information.getAvocation(), information.getClothes(), information.getFood());
         result.setPointList(allEntityService.route(information.getFirstDate(), information.getSecondDate(), authorisationUser.getUser_phone()));
         model.addAttribute("result", result);
+        log.info("get Result");
         return "Result";
     }
 
-    @RequestMapping(value = "/expenses/user", method = RequestMethod.GET)
-    public String showResultUserExpanses(@ModelAttribute("authorisationUser") AuthorisationUser authorisationUser, Model model) {
-        model.addAttribute("expanses", new UserExpenses());
-        model.addAttribute("listExpanses", this.allEntityService.getUserExpenses(authorisationUser.getUser_phone()));
-        return "EditExpenses";
+    @RequestMapping(value = "/expenses/possibility/dateInfo", method = RequestMethod.GET)
+    public String showResult(@ModelAttribute("authorisationUser") AuthorisationUser authorisationUser, @ModelAttribute("result") Result result, ModelAndView modelAndView, Model model) {
+        String result1 = modelAndView.getViewName();
+        System.out.println(result);
+        model.addAttribute("result", result);
+        return "Result";
     }
 }

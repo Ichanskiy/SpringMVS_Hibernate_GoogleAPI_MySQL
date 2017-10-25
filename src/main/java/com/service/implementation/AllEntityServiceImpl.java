@@ -12,6 +12,7 @@ import com.entity.User;
 import com.entity.UserExpenses;
 import com.entity.subsidary.Result;
 import com.service.interfaces.AllEntityService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,7 @@ import java.util.*;
 import static com.Math.Mamdani.Mamdani.*;
 
 @Service
+@Slf4j
 public class AllEntityServiceImpl implements AllEntityService {
 
     @Autowired

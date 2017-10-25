@@ -5,17 +5,14 @@ import com.dao.interfaces.UserDao;
 import com.entity.subsidary.AuthorisationUser;
 import com.entity.User;
 import com.service.interfaces.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService<User> {
-
-    private static final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
-
 
     @Autowired
     private UserDao<User> userDao;
