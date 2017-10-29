@@ -1,6 +1,5 @@
 package com.service.implementation;
 
-import com.dao.implementation.UserDaoImpl;
 import com.dao.interfaces.UserDao;
 import com.entity.subsidary.AuthorisationUser;
 import com.entity.User;

@@ -90,7 +90,7 @@ public class MainController {
         Result result = allEntityService
                 .Mamdani(information.getFirstDate(), information.getSecondDate(), authorisationUser.getUser_phone(),
                         information.getAvocation(), information.getClothes(), information.getFood());
-        result.setPointList(allEntityService.route(information.getFirstDate(), information.getSecondDate(), authorisationUser.getUser_phone()));
+        result.setPointList(allEntityService.route());
         model.addAttribute("result", result);
         log.info("get Result");
         return "Result";

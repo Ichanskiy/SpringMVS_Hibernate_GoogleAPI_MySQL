@@ -1,6 +1,7 @@
 package com.dao.implementation;
 
 import com.dao.interfaces.UserExpensesDao;
+import com.entity.User;
 import com.entity.UserExpenses;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
@@ -25,10 +26,9 @@ public class UserExpensesDaoImpl extends GenericDao implements UserExpensesDao {
         CriteriaBuilder builder = getSessionFactory().getCriteriaBuilder();
         CriteriaQuery<UserExpenses> query = builder.createQuery(UserExpenses.class);
         Root<UserExpenses> root = query.from(UserExpenses.class);
-        Predicate predicate = builder.between(root.<Date>get(UserExpenses.USEREXPERSES_DATE), firstDate, secondDate);
-//        Predicate predicate1 = builder.equal(root.get("user_phone_fk"), phone);
-//        query.where(predicate, predicate1);
-        query.where(predicate);
+        Predicate predicate1 = builder.between(root.<Date>get(UserExpenses.USEREXPERSES_DATE), firstDate, secondDate);
+        Predicate predicate2 = builder.equal(root.get(UserExpenses.USER).get(User.USER_PHONE), phone);
+        query.where(predicate1, predicate2);
         return getSessionFactory().createEntityManager().createQuery(query).getResultList();
     }
 

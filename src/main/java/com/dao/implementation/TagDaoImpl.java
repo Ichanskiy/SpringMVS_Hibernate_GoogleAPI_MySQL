@@ -25,9 +25,8 @@ public class TagDaoImpl extends GenericDao implements TagDao {
     @Override
     public boolean getTagByTagName(String name) {
         Session session = getSessionFactory().getCurrentSession();
-        System.out.println(name);
+        log.info("get tag ", name);
         Tag tag = (Tag) session.get(Tag.class, name);
-        System.out.println(tag);
         if (tag  == null) {
             return  false;
         }else return true;

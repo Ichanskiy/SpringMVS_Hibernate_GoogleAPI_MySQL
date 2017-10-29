@@ -40,12 +40,14 @@ public class AllEntityServiceImpl implements AllEntityService {
     @Autowired
     private UserExpensesDaoImpl userExpensesDaoImpl;
 
+    private static List<UserExpenses> list = new ArrayList<UserExpenses>();
+
     @Override
     @Transactional
     public void saveAllUserExpansesData(DTO dto, String idUser) {
 
         int id = placePointDao.savePlacePoint(dto.getPlacePoint());
-        System.out.println("idPlacePoint = " + id);
+        log.info("idPlacePoint = " + id);
 
         UserExpenses userExpenses = new UserExpenses();
         userExpenses.setUserexperses_count(dto.getUserExpenses().getUserexperses_count());
@@ -80,7 +82,8 @@ public class AllEntityServiceImpl implements AllEntityService {
         Map<String, Double> mapExpanses = new HashMap<String, Double>();
         Map<String, Double> resultMap;
         UserExpenses userExpenses;
-        List<UserExpenses> list = userExpensesDaoImpl.getUserExpensesForTag(firstDate, secondDate, phone);
+        list.clear();
+        list = userExpensesDaoImpl.getUserExpensesForTag(firstDate, secondDate, phone);
         if (!list.isEmpty()) {
             for (UserExpenses aList : list) {
                 userExpenses = aList;
@@ -101,10 +104,9 @@ public class AllEntityServiceImpl implements AllEntityService {
         return new Result(sum, percent, resultMap, null, null);
     }
 
-    public List<String> route(Date firstDate, Date secondDate, String phone) {
+    public List<String> route() {
         List<Integer> ids = new ArrayList<Integer>();
         UserExpenses userExpenses;
-        List<UserExpenses> list = userExpensesDaoImpl.getUserExpensesForTag(firstDate, secondDate, phone);
         if (!list.isEmpty()) {
             for (UserExpenses aList : list) {
                 userExpenses = aList;

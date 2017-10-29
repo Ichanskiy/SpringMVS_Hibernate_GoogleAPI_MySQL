@@ -14,6 +14,6 @@ public interface AllEntityService<T> {
     void saveAllUserExpansesData(DTO dto, String idUser);
     Result Mamdani(Date first, Date second, String phone, double avocation, double clothes, double food);
     List<String> getAddressListById (List ids);
-    List<String> route (Date firstDate, Date secondDate, String phone);
+    List<String> route ();
     List<UserExpenses> getUserExpenses(String phone);
 }
