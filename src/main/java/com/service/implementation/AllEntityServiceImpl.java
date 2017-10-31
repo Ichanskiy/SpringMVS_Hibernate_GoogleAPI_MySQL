@@ -118,7 +118,7 @@ public class AllEntityServiceImpl implements AllEntityService {
 
     @Override
     public List<UserExpenses> getUserExpenses(String phone) {
-        return userExpensesDao.getUserExpensesAll();
+        return userExpensesDao.getUserExpensesAll(phone);
     }
 
 }

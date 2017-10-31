@@ -12,5 +12,5 @@ public interface UserExpensesDao {
     void saveUserExpenses(UserExpenses userExpenses);
     List getUserExpensesForTag(Date first, Date second, String phone);
     List<UserExpenses> getUserExpensesById(int id);
-    List<UserExpenses> getUserExpensesAll();
+    List<UserExpenses> getUserExpensesAll(String phone);
 }

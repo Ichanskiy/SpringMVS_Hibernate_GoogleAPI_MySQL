@@ -47,15 +47,12 @@
     </style>
 </head>
 <body>
-<a href="../../index.jsp">Back to main menu</a>
+<a href="Expenses">Back to main menu</a>
 
 <br/>
 <br/>
-
-
-
-<h1>Expanses List</h1>
 <center>
+<h1>Expanses List</h1>
 <c:if test="${!empty listExpanses}">
     <table class="tg">
         <tr>

@@ -43,11 +43,12 @@ public class UserExpensesDaoImpl extends GenericDao implements UserExpensesDao {
     }
 
     @Override
-    public List<UserExpenses> getUserExpensesAll() {
+    public List<UserExpenses> getUserExpensesAll(String phone) {
         CriteriaBuilder builder = getSessionFactory().getCriteriaBuilder();
         CriteriaQuery<UserExpenses> query = builder.createQuery(UserExpenses.class);
         Root<UserExpenses> root = query.from(UserExpenses.class);
-        query.select(root);
+        Predicate predicate = builder.equal(root.get(UserExpenses.USER).get(User.USER_PHONE), phone);
+        query.where(predicate);
         return getSessionFactory().createEntityManager().createQuery(query).getResultList();
     }
 }
