@@ -77,6 +77,18 @@ public class AllEntityServiceImpl implements AllEntityService {
     }
 
     @Override
+    @Transactional
+    public List<UserExpenses> getUserExpenses(String phone) {
+        return userExpensesDao.getUserExpensesAll(phone);
+    }
+
+    @Override
+    @Transactional
+    public void removeUserExpenses(int id) {
+        userExpensesDao.removeUserExpanses(id);
+    }
+
+    @Override
     public Result Mamdani(Date firstDate, Date secondDate, String phone, double avocation, double clothes, double food) {
         double allSum = 0;
         Map<String, Double> mapExpanses = new HashMap<String, Double>();
@@ -116,9 +128,6 @@ public class AllEntityServiceImpl implements AllEntityService {
         return getAddressListById(ids);
     }
 
-    @Override
-    public List<UserExpenses> getUserExpenses(String phone) {
-        return userExpensesDao.getUserExpensesAll(phone);
-    }
+
 
 }

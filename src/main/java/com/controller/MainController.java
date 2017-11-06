@@ -16,10 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -102,5 +99,11 @@ public class MainController {
         model.addAttribute("expanses", new UserExpenses());
         model.addAttribute("listExpanses", this.allEntityService.getUserExpenses(authorisationUser.getUser_phone()));
         return "EditExpenses";
+    }
+
+    @PostMapping(value = "/expenses/remove/{id}")
+    public String removeUserExpanses(@ModelAttribute("authorisationUser") AuthorisationUser authorisationUser,@PathVariable("id") int id) {
+        allEntityService.removeUserExpenses(id);
+        return "redirect:/EditExpenses";
     }
 }

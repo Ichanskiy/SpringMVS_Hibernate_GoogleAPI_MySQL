@@ -13,4 +13,5 @@ public interface UserExpensesDao {
     List getUserExpensesForTag(Date first, Date second, String phone);
     List<UserExpenses> getUserExpensesById(int id);
     List<UserExpenses> getUserExpensesAll(String phone);
+    void removeUserExpanses(int id);
 }

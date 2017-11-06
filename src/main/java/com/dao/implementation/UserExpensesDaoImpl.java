@@ -51,4 +51,14 @@ public class UserExpensesDaoImpl extends GenericDao implements UserExpensesDao {
         query.where(predicate);
         return getSessionFactory().createEntityManager().createQuery(query).getResultList();
     }
+
+    @Override
+    public void removeUserExpanses(int id) {
+        CriteriaBuilder builder = getSessionFactory().getCriteriaBuilder();
+        CriteriaDelete<UserExpenses> query = builder.createCriteriaDelete(UserExpenses.class);
+        Root<UserExpenses> root = query.from(UserExpenses.class);
+        Predicate predicate = builder.equal(root.get(UserExpenses.USEREXPENSES_ID), String.valueOf(id));
+        query.where(predicate);
+        executeUpdate(query);
+    }
 }

@@ -16,4 +16,5 @@ public interface AllEntityService<T> {
     List<String> getAddressListById (List ids);
     List<String> route ();
     List<UserExpenses> getUserExpenses(String phone);
+    void removeUserExpenses(int id);
 }
